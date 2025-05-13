@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tentang Kami - Clustering Kopi</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Clustering Kopi</div>
+        <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Halaman Clustering</a>
+                <div class="dropdown-content">
+                    <a href="/clustering">Produksi</a>
+                    <a href="/clustering/ekspor">Ekspor</a>
+                </div>
+            </li>
+            <li><a href="/about" class="active">Tentang Kami</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if session.get('username') %}
+            <div class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+                    {{ session['username'] }}
+                </a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/login" class="btn mini">Login</a>
+            <a href="/register" class="btn mini">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="about-card">
+        <div class="profile-section">
+            <img src="/static/img/profil/profil.jpg" alt="Profil Arya" class="profile-img">
+            <div class="profile-info">
+                <h1>Arya Dwi Saputra</h1>
+                <p>Student at Tarumanagara University</p>
+            </div>
+        </div>
+
+        <div class="about-tabs">
+            <button>Skills</button>
+            <!-- <button>Experience</button>
+            <button>Personal</button> -->
+        </div>
+
+        <div class="tab-content active">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div>
+                    <h3>Programming & Data</h3>
+                    <ul>
+                        <li>Python (Pandas, Scikit-Learn)</li>
+                        <li>HTML & CSS</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="about-footer">
+            <p>© 2025 Arya Dwi Saputra | Built with Flask & HTML/CSS</p>
+        </footer>
+    </section>
+</main>
+
+<script>
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const parent = event.target.closest(".dropdown");
+        const content = parent.querySelector(".dropdown-content");
+        content.classList.toggle("active");
+    }
+
+    document.addEventListener("click", function () {
+        document.querySelectorAll(".dropdown-content.active").forEach(dd => {
+            dd.classList.remove("active");
+        });
+    });
+
+    // Tab functionality (optional future logic)
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab, idx) => {
+        tab.addEventListener("click", () => {
+            tabs.forEach(btn => btn.classList.remove("active"));
+            contents.forEach(c => c.classList.remove("active"));
+            tab.classList.add("active");
+            contents[idx].classList.add("active");
+        });
+    });
+</script>
+</body>
+</html>

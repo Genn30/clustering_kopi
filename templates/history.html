@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Analisis Clustering</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Clustering Kopi</div>
+        <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Halaman Clustering</a>
+                <div class="dropdown-content">
+                    <a href="/clustering">Produksi</a>
+                    <a href="/clustering/ekspor">Ekspor</a>
+                </div>
+            </li>
+            <li><a href="/about">Tentang Kami</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if session.get('username') %}
+            <div class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+                    {{ session['username'] }}
+                </a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/login" class="btn mini">Login</a>
+            <a href="/register" class="btn mini">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="history-section">
+        <h2>Riwayat Analisis Clustering</h2>
+
+        {% if grouped_history %}
+        {% for date, entries in grouped_history.items() %}
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>{{ date }}</span>
+                <span class="arrow">&#9660;</span>
+            </div>
+            <div class="accordion-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pengguna</th>
+                            <th>Jam</th>
+                            <th>Jenis</th>
+                            <th>Metode</th>
+                            <th>Cluster</th>
+                            <th>Silhouette</th>
+                            <th>DBI</th>
+                            <th>Waktu (s)</th>
+                            <th>Grafik</th>
+                            <th>Tren</th>
+                            <th>Dendrogram</th>
+                            <th>Peta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in entries %}
+                        <tr>
+                            <td>{{ item.username }}</td>
+                            <td>{{ item.timestamp.strftime('%H:%M:%S') }}</td>
+                            <td>{{ item.type }}</td>
+                            <td>{{ item.method }}</td>
+                            <td>{{ item.n_clusters }}</td>
+                            <td>{{ item.silhouette }}</td>
+                            <td>{{ item.dbi }}</td>
+                            <td>{{ item.time_exec }}</td>
+
+                            <td>
+                                {% if item.grafik_path %}
+                                <a href="/{{ item.grafik_path }}" target="_blank" class="btn mini">Lihat</a>
+                                {% else %}-{% endif %}
+                            </td>
+
+                            <td>
+                                {% if item.trend_path %}
+                                <a href="/{{ item.trend_path }}" target="_blank" class="btn mini">Lihat</a>
+                                {% else %}-{% endif %}
+                            </td>
+
+                            <td>
+                                {% if item.method == 'Agglomerative' and item.dendro_path %}
+                                <a href="/{{ item.dendro_path }}" target="_blank" class="btn mini">Lihat</a>
+                                {% else %}-{% endif %}
+                            </td>
+
+                            <td>
+                                {% if item.peta_path %}
+                                <a href="/{{ item.peta_path }}" target="_blank" class="btn mini">Lihat</a>
+                                {% else %}-{% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>Tidak ada riwayat analisis yang tersedia.</p>
+        {% endif %}
+    </section>
+</main>
+
+<script>
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const parent = event.target.closest(".dropdown");
+        const content = parent.querySelector(".dropdown-content");
+        content.classList.toggle("active");
+    }
+
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+        const arrow = header.querySelector(".arrow");
+        arrow.innerHTML = content.style.display === "block" ? "&#9650;" : "&#9660;";
+    }
+
+    document.addEventListener("click", function () {
+        document.querySelectorAll(".dropdown-content.active").forEach(dd => {
+            dd.classList.remove("active");
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clustering Ekspor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Clustering Kopi</div>
+        <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Halaman Clustering</a>
+                <div class="dropdown-content">
+                    <a href="/clustering">Produksi</a>
+                    <a href="/clustering/ekspor">Ekspor</a>
+                </div>
+            </li>
+            <li><a href="/about">Tentang Kami</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if session.get('username') %}
+            <div class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+                    {{ session['username'] }}
+                </a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/login" class="btn mini">Login</a>
+            <a href="/register" class="btn mini">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="clustering-form">
+        <h2>Clustering Ekspor Kopi</h2>
+
+        <div class="template-download" style="margin-bottom: 20px;">
+            <p>Unduh template untuk memastikan format dataset ekspor Anda sudah sesuai:</p>
+            <a href="/static/Template Ekspor.xlsx" class="btn" download>Download Template</a>
+        </div>
+
+        {% if not session.get('username') %}
+            <div class="flash error">Anda harus login untuk dapat mengunggah dataset.</div>
+        {% endif %}
+
+        <form action="/clustering/ekspor" method="POST" enctype="multipart/form-data">
+            <div class="file-upload-wrapper">
+                <label for="file" class="btn">Unggah Dataset</label>
+                <span id="file-name">Belum ada file dipilih</span>
+                <input type="file" name="file" id="file" accept=".xlsx" required>
+            </div>
+
+            <div class="cluster-slider">
+                <label for="n_clusters">Jumlah Cluster: <span id="cluster-value">3</span></label>
+                <input type="range" id="n_clusters" name="n_clusters" min="2" max="7" value="3">
+            </div>
+
+            <div class="checkboxes">
+                <label><input type="radio" name="method" value="kmeans" required> K-Means Clustering</label>
+                <label><input type="radio" name="method" value="agglo"> Hierarchical Agglomerative</label>
+            </div>
+
+            <button type="submit" id="btn-submit">Konfirmasi</button>
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
+
+    {% if count_table|default([]) %}
+    <section class="clustering-result">
+        <h3>Jumlah Data per Cluster</h3>
+        <table>
+            <tr>
+                <th>Cluster</th>
+                <th>Jumlah Data</th>
+            </tr>
+            {% for row in count_table %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    {% endif %}
+
+    {% if cluster_table|default([]) %}
+    <section class="clustering-result">
+        <h3>Anggota Setiap Cluster</h3>
+        <table>
+            <tr>
+                <th>Cluster</th>
+                <th>Anggota</th>
+            </tr>
+            {% for row in cluster_table %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    {% endif %}
+
+    {% if results|default([]) %}
+    <section class="clustering-result">
+        <h3>Hasil Clustering Data</h3>
+        <table>
+            <tr>
+                <th>Metode</th>
+                <th>Jumlah Cluster</th>
+                <th>Silhouette</th>
+                <th>Davies-Bouldin</th>
+                <th>Waktu (s)</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.Algorithm }}</td>
+                <td>{{ row['Clusters Num.'] }}</td>
+                <td>{{ row['Avg. Silhouette'] }}</td>
+                <td>{{ row['Davies Bouldin Index'] }}</td>
+                <td>{{ row['Execution Time (s)'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    {% endif %}
+
+    {% if grafik_path|default('') %}
+    <section class="clustering-result">
+        <h3>Grafik Ekspor Total per Cluster (Top 20)</h3>
+        <img src="{{ '/' + grafik_path }}" alt="Grafik Ekspor" style="max-width: 100%; border-radius: 8px;">
+    </section>
+    {% endif %}
+
+    {% if trend_path|default('') %}
+    <section class="clustering-result">
+        <h3>Grafik Tren Berat Ekspor Tahunan (Top 10)</h3>
+        <img src="{{ '/' + trend_path }}" alt="Grafik Tren Ekspor" style="max-width: 100%; border-radius: 8px;">
+    </section>
+    {% endif %}
+
+    {% if dendro_path|default('') %}
+    <section class="clustering-result">
+        <h3>Dendrogram Hierarchical Agglomerative Clustering</h3>
+        <img src="{{ '/' + dendro_path }}" alt="Dendrogram Ekspor" style="max-width: 100%; border-radius: 8px;">
+    </section>
+    {% endif %}
+
+    {% if peta_path|default('') %}
+    <section class="clustering-result">
+        <h3>Peta Lokasi Negara Tujuan</h3>
+        <iframe src="{{ '/' + peta_path }}" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 8px;"></iframe>
+    </section>
+    {% endif %}
+</main>
+
+<script>
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const parent = event.target.closest(".dropdown");
+        const content = parent.querySelector(".dropdown-content");
+        content.classList.toggle("active");
+    }
+
+    document.addEventListener("click", function () {
+        document.querySelectorAll(".dropdown-content.active").forEach(dd => {
+            dd.classList.remove("active");
+        });
+    });
+
+    const fileInput = document.getElementById("file");
+    const fileNameDisplay = document.getElementById("file-name");
+
+    document.getElementById("btn-submit").addEventListener('click', () => {
+        document.getElementById("btn-submit").textContent = "Loading...";
+    });
+
+    fileInput.addEventListener("change", () => {
+        const name = fileInput.files[0]?.name || "Belum ada file dipilih";
+        fileNameDisplay.textContent = name;
+    });
+
+    const clusterSlider = document.getElementById("n_clusters");
+    const clusterValue = document.getElementById("cluster-value");
+
+    clusterSlider?.addEventListener("input", () => {
+        clusterValue.textContent = clusterSlider.value;
+    });
+</script>
+</body>
+</html>

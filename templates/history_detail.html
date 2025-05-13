@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Riwayat Clustering</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home-background">
+
+    <nav class="navbar">
+        <div class="logo">Clustering Kopi</div>
+        <div class="nav-center">
+            <ul class="nav-links">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/clustering">CLUSTERING</a></li>
+                <li><a href="/clustering/ekspor">EKSPOR</a></li>
+                <li><a href="/history">HISTORY</a></li>
+                <li><a href="/about">ABOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Detail Riwayat Clustering</h2>
+
+        <table>
+            <tr><th>Username</th><td>{{ data.username }}</td></tr>
+            <tr><th>Jenis</th><td>{{ data.type }}</td></tr>
+            <tr><th>Metode</th><td>{{ data.method }}</td></tr>
+            <tr><th>Jumlah Cluster</th><td>{{ data.n_clusters }}</td></tr>
+            <tr><th>Silhouette</th><td>{{ data.silhouette }}</td></tr>
+            <tr><th>Davies-Bouldin Index</th><td>{{ data.dbi }}</td></tr>
+            <tr><th>Waktu Eksekusi</th><td>{{ data.time_exec }} detik</td></tr>
+            <tr><th>Tanggal</th><td>{{ data.timestamp.strftime('%d-%m-%Y %H:%M:%S') }}</td></tr>
+        </table>
+
+        <h3>Jumlah Data per Cluster</h3>
+        <table>
+            <tr><th>Cluster</th><th>Jumlah Data</th></tr>
+            {% for item in data.count_table %}
+                <tr><td>{{ item[0] }}</td><td>{{ item[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h3>Anggota Cluster</h3>
+        <table>
+            <tr><th>Cluster</th><th>Anggota</th></tr>
+            {% for item in data.cluster_table %}
+                <tr><td>{{ item[0] }}</td><td>{{ item[1] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        {% if data.grafik_path %}
+            <h3>Grafik Total Produksi / Ekspor</h3>
+            <img src="{{ url_for('static', filename=data.grafik_path.split('static/')[1]) }}" width="100%">
+        {% endif %}
+
+        {% if data.trend_path %}
+            <h3>Grafik Tren Tahunan</h3>
+            <img src="{{ url_for('static', filename=data.trend_path.split('static/')[1]) }}" width="100%">
+        {% endif %}
+
+        {% if data.peta_path %}
+            <h3>Peta Interaktif</h3>
+            <iframe src="{{ url_for('static', filename=data.peta_path.split('static/')[1]) }}" width="100%" height="500"></iframe>
+        {% endif %}
+
+        {% if data.dendro_path %}
+            <h3>Dendrogram</h3>
+            <img src="{{ url_for('static', filename=data.dendro_path.split('static/')[1]) }}" width="100%">
+        {% endif %}
+
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('history') }}" class="btn">← Kembali ke Riwayat</a>
+        </div>
+    </div>
+
+</body>
+</html>

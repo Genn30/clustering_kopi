@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Beranda | Clustering Kopi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Clustering Kopi</div>
+        <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Halaman Clustering</a>
+                <div class="dropdown-content">
+                    <a href="/clustering">Produksi</a>
+                    <a href="/clustering/ekspor">Ekspor</a>
+                </div>
+            </li>
+            <li><a href="/about">Tentang Kami</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if session.get('username') %}
+            <div class="dropdown">
+                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
+                    {{ session['username'] }}
+                </a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/login" class="btn mini">Login</a>
+            <a href="/register" class="btn mini">Register</a>
+            {% endif %}
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <span>&#9776;</span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<aside id="sidebar" class="sidebar">
+    <ul>
+        <li><a href="/history">Riwayat Clustering</a></li>
+    </ul>
+</aside>
+
+<main>
+    <section class="hero-home">
+        <div class="hero-text">
+            <h1>Perjalanan Kopi dari Alam hingga Produk</h1>
+            <p>Mari kenali lebih dalam bagaimana biji kopi terbentuk dan diolah menjadi berbagai produk unggulan.</p>
+            <a href="#content" class="btn">Jelajahi</a>
+        </div>
+    </section>
+
+    <section id="content" class="home-sections">
+
+        <div class="section">
+            <h2>1. Dari Tumbuhan hingga Biji Kopi</h2>
+            <p>
+                Proses dimulai dari penanaman biji kopi yang tumbuh menjadi tanaman kopi. Setelah 3-4 tahun, pohon kopi mulai berbuah. Buah kopi yang matang (cherry) dipanen dan diproses dengan metode:
+            </p>
+            <ul>
+                <li><strong>Metode Basah:</strong> buah difermentasi lalu dicuci, menghasilkan rasa lebih bersih dan cerah.</li>
+                <li><strong>Metode Kering:</strong> buah dijemur utuh dan dikupas setelah kering, menghasilkan rasa lebih fruity.</li>
+            </ul>
+            <p>
+                Setelah dikupas, biji dikeringkan menjadi <strong>green bean</strong> dan siap untuk proses roasting.
+            </p>
+            <img src="/static/img/kopi/pohon.kopi.jpg" alt="Tanaman Kopi">
+        </div>
+
+        <div class="section">
+            <h2>2. Proses dan Jenis Roasting Kopi</h2>
+            <p>Roasting adalah proses pemanggangan biji kopi untuk mengembangkan aroma, rasa, dan warna. Berikut jenis-jenisnya:</p>
+            <ul>
+                <li>
+                    <strong>Light Roast:</strong> 
+                    Proses cepat dengan suhu 180–200°C, warna biji terang, rasa asam tinggi dan karakter origin masih kuat.
+                </li>
+                <li>
+                    <strong>Medium Roast:</strong> 
+                    Suhu 210–220°C, rasa lebih seimbang antara asam dan pahit, cocok untuk mayoritas metode seduh.
+                </li>
+                <li>
+                    <strong>Dark Roast:</strong> 
+                    Suhu >230°C, biji lebih gelap dan berminyak, rasa pahit dominan dan cocok untuk espresso.
+                </li>
+            </ul>
+            <img src="/static/img/kopi/roasting.webp" alt="Jenis Roasting">
+        </div>
+
+        <div class="section">
+            <h2>3. Produk Turunan dari Biji Kopi</h2>
+            <p>
+                Setelah diroasting, biji kopi dapat diproses lebih lanjut menjadi berbagai produk seperti:
+            </p>
+            <div class="produk-detail">
+                <div>
+                    <img src="/static/img/kopi/kopi bubuk.jpeg" alt="Kopi Bubuk">
+                    <p><strong>Kopi Bubuk:</strong> Digunakan untuk metode seduh tradisional seperti tubruk, drip, atau French press.</p>
+                </div>
+                <div>
+                    <img src="/static/img/kopi/kopi kapsul.jpg" alt="Kopi Kapsul">
+                    <p><strong>Kopi Kapsul:</strong> Dikemas dalam pod untuk mesin kopi otomatis, praktis dan konsisten.</p>
+                </div>
+                <div>
+                    <img src="/static/img/kopi/minuman kopi.jpeg" alt="Minuman Kopi">
+                    <p><strong>Minuman Kopi:</strong> Termasuk kopi susu botolan, cold brew, kopi kaleng, dan lainnya.</p>
+                </div>
+                <div>
+                    <img src="/static/img/kopi/kosmetik ekstrak kopi.png" alt="Kosmetik Kopi">
+                    <p><strong>Kosmetik:</strong> Ekstrak kopi digunakan dalam body scrub, masker, dan sabun untuk antioksidan dan aroma khas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Tujuan Pembuatan Website Ini</h2>
+            <p>
+                Website ini bertujuan untuk memberikan wawasan berbasis data terhadap tren produksi dan ekspor kopi. Dengan bantuan metode <strong>clustering</strong>, pengguna dapat:
+            </p>
+            <ul>
+                <li>Mengelompokkan wilayah berdasarkan produksi kopi.</li>
+                <li>Menemukan negara tujuan ekspor terbanyak.</li>
+                <li>Melihat peta distribusi dan tren tahunan secara visual.</li>
+            </ul>
+        </div>
+
+        <div class="btn-center">
+            <form action="/clustering" method="get">
+                <button type="submit" class="btn">Mulai Analisis Clustering</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("active");
+    }
+
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const dropdown = event.target.closest('.dropdown');
+        const content = dropdown.querySelector('.dropdown-content');
+        content.classList.toggle('active');
+    }
+
+    document.addEventListener("click", function (event) {
+        document.querySelectorAll(".dropdown-content.active").forEach(dd => {
+            dd.classList.remove("active");
+        });
+
+        const sidebar = document.getElementById("sidebar");
+        const menuToggle = document.querySelector(".menu-toggle");
+        if (sidebar.classList.contains("active") &&
+            !sidebar.contains(event.target) &&
+            !menuToggle.contains(event.target)) {
+            sidebar.classList.remove("active");
+        }
+    });
+</script>
+</body>
+</html>
