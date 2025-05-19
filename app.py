@@ -122,7 +122,7 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
     plt.xticks(rotation=90)
     plt.title(f"Top 20 {'Negara' if is_ekspor else 'Kabupaten/Kota'} Berdasarkan Total {'Ekspor' if is_ekspor else 'Produksi'} ({algo})")
     plt.xlabel("Negara" if is_ekspor else "Kabupaten/Kota")
-    plt.ylabel("Total (kg)")
+    plt.ylabel("Total (Ton)")
     plt.tight_layout()
     grafik_path = f"static/img/grafik_{file_id}.png"
     plt.savefig(grafik_path)
