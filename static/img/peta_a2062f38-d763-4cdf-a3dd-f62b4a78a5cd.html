@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_788b76e85f61f60f00e7e43c1382327f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey; border-radius:5px;"><strong>Legenda Cluster:</strong><br><i style="background:#1f77b4; width:10px; height:10px; display:inline-block;"></i> Cluster 0 - Sedang<br><i style="background:#2ca02c; width:10px; height:10px; display:inline-block;"></i> Cluster 1 - Sangat Rendah<br><i style="background:#8c564b; width:10px; height:10px; display:inline-block;"></i> Cluster 2 - Rendah<br><i style="background:#7f7f7f; width:10px; height:10px; display:inline-block;"></i> Cluster 3 - Sangat Tinggi<br><i style="background:#17becf; width:10px; height:10px; display:inline-block;"></i> Cluster 4 - Tinggi<br></div>
+    
+            <div class="folium-map" id="map_788b76e85f61f60f00e7e43c1382327f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_788b76e85f61f60f00e7e43c1382327f = L.map(
+                "map_788b76e85f61f60f00e7e43c1382327f",
+                {
+                    center: [0.0, 120.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_87431816e9025f7dad82f19796285e57 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_87431816e9025f7dad82f19796285e57.addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+            var circle_marker_a4b48dfa64f1f4d9c130f9e078ed9d7d = L.circleMarker(
+                [4.695135, 96.7493993],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_9d55ded4396bc5c17fb3a7674c3cc6db = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3c6f3f4131ed1dba540961377b3f3ec = $(`<div id="html_f3c6f3f4131ed1dba540961377b3f3ec" style="width: 100.0%; height: 100.0%;"><b>11 - Aceh</b><br>Cluster: 1<br>Total: 51,189 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_9d55ded4396bc5c17fb3a7674c3cc6db.setContent(html_f3c6f3f4131ed1dba540961377b3f3ec);
+            
+        
+
+        circle_marker_a4b48dfa64f1f4d9c130f9e078ed9d7d.bindPopup(popup_9d55ded4396bc5c17fb3a7674c3cc6db)
+        ;
+
+        
+    
+    
+            var circle_marker_214c910d365de39e3fb6e9853f702ffc = L.circleMarker(
+                [2.1153547, 99.5450974],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_25df80847fc2e7666e891722f957312c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b90f03741afac8c20d7aa8bb166e3c5b = $(`<div id="html_b90f03741afac8c20d7aa8bb166e3c5b" style="width: 100.0%; height: 100.0%;"><b>12 - Sumatera Utara</b><br>Cluster: 2<br>Total: 76,919 kg<br>Kategori: Rendah</div>`)[0];
+                popup_25df80847fc2e7666e891722f957312c.setContent(html_b90f03741afac8c20d7aa8bb166e3c5b);
+            
+        
+
+        circle_marker_214c910d365de39e3fb6e9853f702ffc.bindPopup(popup_25df80847fc2e7666e891722f957312c)
+        ;
+
+        
+    
+    
+            var circle_marker_ce88e75506a80df107a53cb39e1bbad8 = L.circleMarker(
+                [-0.7399397, 100.8000051],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_a9dd01a9bd251ff5bc7f83441d5cc408 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_07519b65ba9b7e5863e5e19c087d377e = $(`<div id="html_07519b65ba9b7e5863e5e19c087d377e" style="width: 100.0%; height: 100.0%;"><b>13 - Sumatera Barat</b><br>Cluster: 2<br>Total: 88,060 kg<br>Kategori: Rendah</div>`)[0];
+                popup_a9dd01a9bd251ff5bc7f83441d5cc408.setContent(html_07519b65ba9b7e5863e5e19c087d377e);
+            
+        
+
+        circle_marker_ce88e75506a80df107a53cb39e1bbad8.bindPopup(popup_a9dd01a9bd251ff5bc7f83441d5cc408)
+        ;
+
+        
+    
+    
+            var circle_marker_7b5c883a679224f9aad2f0fad340452b = L.circleMarker(
+                [0.2933469, 101.7068294],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_b716231c0cc05e4553ea197726097349 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d8a4108d9c8cb2d893ce02a0c195be78 = $(`<div id="html_d8a4108d9c8cb2d893ce02a0c195be78" style="width: 100.0%; height: 100.0%;"><b>14 - Riau</b><br>Cluster: 1<br>Total: 20,804 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_b716231c0cc05e4553ea197726097349.setContent(html_d8a4108d9c8cb2d893ce02a0c195be78);
+            
+        
+
+        circle_marker_7b5c883a679224f9aad2f0fad340452b.bindPopup(popup_b716231c0cc05e4553ea197726097349)
+        ;
+
+        
+    
+    
+            var circle_marker_e066fa7a4d89d881d4f1d5f1959460a7 = L.circleMarker(
+                [-1.4851831, 102.4380581],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_c391d2a3b581c294f6db66533a6df696 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_40b9230e33b4e60dee0537178323e41a = $(`<div id="html_40b9230e33b4e60dee0537178323e41a" style="width: 100.0%; height: 100.0%;"><b>15 - Jambi</b><br>Cluster: 2<br>Total: 125,937 kg<br>Kategori: Rendah</div>`)[0];
+                popup_c391d2a3b581c294f6db66533a6df696.setContent(html_40b9230e33b4e60dee0537178323e41a);
+            
+        
+
+        circle_marker_e066fa7a4d89d881d4f1d5f1959460a7.bindPopup(popup_c391d2a3b581c294f6db66533a6df696)
+        ;
+
+        
+    
+    
+            var circle_marker_3a02f5fd42ecb0856ff6fc94f9af6c7f = L.circleMarker(
+                [-3.3194374, 103.914399],
+                {"bubblingMouseEvents": true, "color": "#7f7f7f", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7f7f7f", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_4a112d407c253b4103c99ef91930acf6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8999482416b42bf5f538453082e271d5 = $(`<div id="html_8999482416b42bf5f538453082e271d5" style="width: 100.0%; height: 100.0%;"><b>16 - Sumatera Selatan</b><br>Cluster: 3<br>Total: 1,418,678 kg<br>Kategori: Sangat Tinggi</div>`)[0];
+                popup_4a112d407c253b4103c99ef91930acf6.setContent(html_8999482416b42bf5f538453082e271d5);
+            
+        
+
+        circle_marker_3a02f5fd42ecb0856ff6fc94f9af6c7f.bindPopup(popup_4a112d407c253b4103c99ef91930acf6)
+        ;
+
+        
+    
+    
+            var circle_marker_09d1d5210ca12e38598aeb4a57c87313 = L.circleMarker(
+                [-3.5778471, 102.3463875],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_6cec384ee24e7fbc1f13c6cdb4b0743a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f79e2eb89ae17587a3f441f01e2a60b2 = $(`<div id="html_f79e2eb89ae17587a3f441f01e2a60b2" style="width: 100.0%; height: 100.0%;"><b>17 - Bengkulu</b><br>Cluster: 0<br>Total: 471,575 kg<br>Kategori: Sedang</div>`)[0];
+                popup_6cec384ee24e7fbc1f13c6cdb4b0743a.setContent(html_f79e2eb89ae17587a3f441f01e2a60b2);
+            
+        
+
+        circle_marker_09d1d5210ca12e38598aeb4a57c87313.bindPopup(popup_6cec384ee24e7fbc1f13c6cdb4b0743a)
+        ;
+
+        
+    
+    
+            var circle_marker_f706e296f8023d8a4c31cdadc16aa479 = L.circleMarker(
+                [-4.5585849, 105.4068079],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_51463ce0ff3ed3a7b94a89b3b51d2e07 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3ed4b686d89ff0946f5061200930d63a = $(`<div id="html_3ed4b686d89ff0946f5061200930d63a" style="width: 100.0%; height: 100.0%;"><b>18 - Lampung</b><br>Cluster: 4<br>Total: 907,777 kg<br>Kategori: Tinggi</div>`)[0];
+                popup_51463ce0ff3ed3a7b94a89b3b51d2e07.setContent(html_3ed4b686d89ff0946f5061200930d63a);
+            
+        
+
+        circle_marker_f706e296f8023d8a4c31cdadc16aa479.bindPopup(popup_51463ce0ff3ed3a7b94a89b3b51d2e07)
+        ;
+
+        
+    
+    
+            var circle_marker_d9f2189c11c1d7c37c32eceb5178c418 = L.circleMarker(
+                [-2.7410513, 106.4405872],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_32e34742c85666d891567b280aefa15f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9fee8d82c0f81b7f38494972a36ff601 = $(`<div id="html_9fee8d82c0f81b7f38494972a36ff601" style="width: 100.0%; height: 100.0%;"><b>19 - Kepulauan Bangka Belitung</b><br>Cluster: 1<br>Total: 149 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_32e34742c85666d891567b280aefa15f.setContent(html_9fee8d82c0f81b7f38494972a36ff601);
+            
+        
+
+        circle_marker_d9f2189c11c1d7c37c32eceb5178c418.bindPopup(popup_32e34742c85666d891567b280aefa15f)
+        ;
+
+        
+    
+    
+            var circle_marker_5221c50dafbc5e5d1b9aebd502e4db55 = L.circleMarker(
+                [-7.090911, 107.668887],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_71241f568480e31e8ced776df43ef5fe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6b9da80e0683d82d5fd980a5527bb80b = $(`<div id="html_6b9da80e0683d82d5fd980a5527bb80b" style="width: 100.0%; height: 100.0%;"><b>32 - Jawa Barat</b><br>Cluster: 2<br>Total: 72,405 kg<br>Kategori: Rendah</div>`)[0];
+                popup_71241f568480e31e8ced776df43ef5fe.setContent(html_6b9da80e0683d82d5fd980a5527bb80b);
+            
+        
+
+        circle_marker_5221c50dafbc5e5d1b9aebd502e4db55.bindPopup(popup_71241f568480e31e8ced776df43ef5fe)
+        ;
+
+        
+    
+    
+            var circle_marker_ee94f044e9febbad0e7a228a7910bb23 = L.circleMarker(
+                [-7.150975, 110.1402594],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_35affadc01846b9080aee0a45244fb2d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9bb1cb5880f0d71fef15ae974460bd21 = $(`<div id="html_9bb1cb5880f0d71fef15ae974460bd21" style="width: 100.0%; height: 100.0%;"><b>33 - Jawa Tengah</b><br>Cluster: 2<br>Total: 164,456 kg<br>Kategori: Rendah</div>`)[0];
+                popup_35affadc01846b9080aee0a45244fb2d.setContent(html_9bb1cb5880f0d71fef15ae974460bd21);
+            
+        
+
+        circle_marker_ee94f044e9febbad0e7a228a7910bb23.bindPopup(popup_35affadc01846b9080aee0a45244fb2d)
+        ;
+
+        
+    
+    
+            var circle_marker_6ecad594284de30c4caffcbb80454f4b = L.circleMarker(
+                [-7.8753849, 110.4262088],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_4aff02f96e3263cc788866b4c04212eb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1d6fe69accd4e1983baa87215829f387 = $(`<div id="html_1d6fe69accd4e1983baa87215829f387" style="width: 100.0%; height: 100.0%;"><b>34 - Daerah Istimewa Yogyakarta</b><br>Cluster: 1<br>Total: 3,718 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_4aff02f96e3263cc788866b4c04212eb.setContent(html_1d6fe69accd4e1983baa87215829f387);
+            
+        
+
+        circle_marker_6ecad594284de30c4caffcbb80454f4b.bindPopup(popup_4aff02f96e3263cc788866b4c04212eb)
+        ;
+
+        
+    
+    
+            var circle_marker_2bbe61e7673976a04a56a7757abea845 = L.circleMarker(
+                [-7.5360639, 112.2384017],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_44bea2c9a8118bc17afb0bd28a43759d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_31b3af9d818d8f2f79c00682758a79d6 = $(`<div id="html_31b3af9d818d8f2f79c00682758a79d6" style="width: 100.0%; height: 100.0%;"><b>35 - Jawa Timur</b><br>Cluster: 0<br>Total: 319,030 kg<br>Kategori: Sedang</div>`)[0];
+                popup_44bea2c9a8118bc17afb0bd28a43759d.setContent(html_31b3af9d818d8f2f79c00682758a79d6);
+            
+        
+
+        circle_marker_2bbe61e7673976a04a56a7757abea845.bindPopup(popup_44bea2c9a8118bc17afb0bd28a43759d)
+        ;
+
+        
+    
+    
+            var circle_marker_0ab939328fcb0e17cd8d1270fcc5b56e = L.circleMarker(
+                [-6.4058172, 106.0640179],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_44eb3b1317be47b1ae6d6aeb042a7c7f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ba406ed88480e170943bcd4aec46006c = $(`<div id="html_ba406ed88480e170943bcd4aec46006c" style="width: 100.0%; height: 100.0%;"><b>36 - Banten</b><br>Cluster: 1<br>Total: 18,095 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_44eb3b1317be47b1ae6d6aeb042a7c7f.setContent(html_ba406ed88480e170943bcd4aec46006c);
+            
+        
+
+        circle_marker_0ab939328fcb0e17cd8d1270fcc5b56e.bindPopup(popup_44eb3b1317be47b1ae6d6aeb042a7c7f)
+        ;
+
+        
+    
+    
+            var circle_marker_5eafc863ce6fb8e2c71144f178ab7ad6 = L.circleMarker(
+                [-8.4095178, 115.188916],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_e230670525737908a1ae8051c7f6db41 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_278ed618efee4ffb51a00585b2c06eb4 = $(`<div id="html_278ed618efee4ffb51a00585b2c06eb4" style="width: 100.0%; height: 100.0%;"><b>51 - Bali</b><br>Cluster: 2<br>Total: 93,074 kg<br>Kategori: Rendah</div>`)[0];
+                popup_e230670525737908a1ae8051c7f6db41.setContent(html_278ed618efee4ffb51a00585b2c06eb4);
+            
+        
+
+        circle_marker_5eafc863ce6fb8e2c71144f178ab7ad6.bindPopup(popup_e230670525737908a1ae8051c7f6db41)
+        ;
+
+        
+    
+    
+            var circle_marker_7309144cceea0ddc3dec13aadd440284 = L.circleMarker(
+                [-8.6529334, 117.3616476],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_e274579823194274f7b103391f490c5a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8f0fcf9d94f819d9c13bee09e666e618 = $(`<div id="html_8f0fcf9d94f819d9c13bee09e666e618" style="width: 100.0%; height: 100.0%;"><b>52 - Nusa Tenggara Barat</b><br>Cluster: 1<br>Total: 37,754 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_e274579823194274f7b103391f490c5a.setContent(html_8f0fcf9d94f819d9c13bee09e666e618);
+            
+        
+
+        circle_marker_7309144cceea0ddc3dec13aadd440284.bindPopup(popup_e274579823194274f7b103391f490c5a)
+        ;
+
+        
+    
+    
+            var circle_marker_b0bd930850cb8822a0c74096e2473d98 = L.circleMarker(
+                [-8.6573819, 121.0793705],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_1f9abc4ae40894f42a4128322b27bf9b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9f9adb7a04ac47cfeba5af8103f8b05f = $(`<div id="html_9f9adb7a04ac47cfeba5af8103f8b05f" style="width: 100.0%; height: 100.0%;"><b>53 - Nusa Tenggara Timur</b><br>Cluster: 2<br>Total: 126,988 kg<br>Kategori: Rendah</div>`)[0];
+                popup_1f9abc4ae40894f42a4128322b27bf9b.setContent(html_9f9adb7a04ac47cfeba5af8103f8b05f);
+            
+        
+
+        circle_marker_b0bd930850cb8822a0c74096e2473d98.bindPopup(popup_1f9abc4ae40894f42a4128322b27bf9b)
+        ;
+
+        
+    
+    
+            var circle_marker_ca673cba98a9fa3361a98e279df83208 = L.circleMarker(
+                [-0.2787808, 111.4752851],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_f9e9d40b164d51663acd8327551264ef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_822ccc98074c2a1eb382a3959817289e = $(`<div id="html_822ccc98074c2a1eb382a3959817289e" style="width: 100.0%; height: 100.0%;"><b>61 - Kalimantan Barat</b><br>Cluster: 1<br>Total: 28,624 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_f9e9d40b164d51663acd8327551264ef.setContent(html_822ccc98074c2a1eb382a3959817289e);
+            
+        
+
+        circle_marker_ca673cba98a9fa3361a98e279df83208.bindPopup(popup_f9e9d40b164d51663acd8327551264ef)
+        ;
+
+        
+    
+    
+            var circle_marker_7e815f3a10a03a6d9ad830c28b205d57 = L.circleMarker(
+                [-1.6814878, 113.3823545],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_7607b62a58bc38ede098cb2a45d9d988 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24d386fcbf4d18d94f32ca6760dd37af = $(`<div id="html_24d386fcbf4d18d94f32ca6760dd37af" style="width: 100.0%; height: 100.0%;"><b>62 - Kalimantan Tengah</b><br>Cluster: 1<br>Total: 3,110 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_7607b62a58bc38ede098cb2a45d9d988.setContent(html_24d386fcbf4d18d94f32ca6760dd37af);
+            
+        
+
+        circle_marker_7e815f3a10a03a6d9ad830c28b205d57.bindPopup(popup_7607b62a58bc38ede098cb2a45d9d988)
+        ;
+
+        
+    
+    
+            var circle_marker_2e7d020f4f4413872cb7d84d5cf35b2c = L.circleMarker(
+                [-3.0926415, 115.2837585],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_3f309d178b5f8cd47d8a64da7c253901 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_403bdceef471b789643037788be196d8 = $(`<div id="html_403bdceef471b789643037788be196d8" style="width: 100.0%; height: 100.0%;"><b>63 - Kalimantan Selatan</b><br>Cluster: 1<br>Total: 11,194 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_3f309d178b5f8cd47d8a64da7c253901.setContent(html_403bdceef471b789643037788be196d8);
+            
+        
+
+        circle_marker_2e7d020f4f4413872cb7d84d5cf35b2c.bindPopup(popup_3f309d178b5f8cd47d8a64da7c253901)
+        ;
+
+        
+    
+    
+            var circle_marker_985819e06d54ff77febab75af805f3bd = L.circleMarker(
+                [1.6406296, 116.419389],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_bbe5e751e6f0f454eda1a8fc2bd8ab41 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1aae24ebb2a125197902f96430bd6c71 = $(`<div id="html_1aae24ebb2a125197902f96430bd6c71" style="width: 100.0%; height: 100.0%;"><b>64 - Kalimantan Timur</b><br>Cluster: 1<br>Total: 2,183 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_bbe5e751e6f0f454eda1a8fc2bd8ab41.setContent(html_1aae24ebb2a125197902f96430bd6c71);
+            
+        
+
+        circle_marker_985819e06d54ff77febab75af805f3bd.bindPopup(popup_bbe5e751e6f0f454eda1a8fc2bd8ab41)
+        ;
+
+        
+    
+    
+            var circle_marker_d862bd30d312e33491aca0216a98394e = L.circleMarker(
+                [3.154208, 116.033767],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_e0bd1318275aade49005c16d77aaa4cd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee26aa5bc1bbff9072339d2ce5a8c988 = $(`<div id="html_ee26aa5bc1bbff9072339d2ce5a8c988" style="width: 100.0%; height: 100.0%;"><b>65 - Kalimantan Utara</b><br>Cluster: 1<br>Total: 1,757 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_e0bd1318275aade49005c16d77aaa4cd.setContent(html_ee26aa5bc1bbff9072339d2ce5a8c988);
+            
+        
+
+        circle_marker_d862bd30d312e33491aca0216a98394e.bindPopup(popup_e0bd1318275aade49005c16d77aaa4cd)
+        ;
+
+        
+    
+    
+            var circle_marker_5f5791765df7cbdc6675e35b518a43d6 = L.circleMarker(
+                [0.6246932, 123.9750018],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_02c188812bba77b8b9f71895ff26592a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6386a12917a08b34479045cd9b73740 = $(`<div id="html_d6386a12917a08b34479045cd9b73740" style="width: 100.0%; height: 100.0%;"><b>71 - Sulawesi Utara</b><br>Cluster: 1<br>Total: 27,915 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_02c188812bba77b8b9f71895ff26592a.setContent(html_d6386a12917a08b34479045cd9b73740);
+            
+        
+
+        circle_marker_5f5791765df7cbdc6675e35b518a43d6.bindPopup(popup_02c188812bba77b8b9f71895ff26592a)
+        ;
+
+        
+    
+    
+            var circle_marker_8c7c16da464a582724ffda84cbb571f9 = L.circleMarker(
+                [-1.4300254, 121.4456179],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_5f135e5478880faa8f863ccf993832be = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_68c67b5c4e9967e9ea776f8e63acc8ea = $(`<div id="html_68c67b5c4e9967e9ea776f8e63acc8ea" style="width: 100.0%; height: 100.0%;"><b>72 - Sulawesi Tengah</b><br>Cluster: 1<br>Total: 22,901 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_5f135e5478880faa8f863ccf993832be.setContent(html_68c67b5c4e9967e9ea776f8e63acc8ea);
+            
+        
+
+        circle_marker_8c7c16da464a582724ffda84cbb571f9.bindPopup(popup_5f135e5478880faa8f863ccf993832be)
+        ;
+
+        
+    
+    
+            var circle_marker_373d805fc1a41826f879ca27b3bf3bf0 = L.circleMarker(
+                [-3.6687994, 119.9740534],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_ee36fa693d6f31eae91275c7de5f9e76 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_729fe7fb9614aa7d03f0262046ad0140 = $(`<div id="html_729fe7fb9614aa7d03f0262046ad0140" style="width: 100.0%; height: 100.0%;"><b>73 - Sulawesi Selatan</b><br>Cluster: 2<br>Total: 72,843 kg<br>Kategori: Rendah</div>`)[0];
+                popup_ee36fa693d6f31eae91275c7de5f9e76.setContent(html_729fe7fb9614aa7d03f0262046ad0140);
+            
+        
+
+        circle_marker_373d805fc1a41826f879ca27b3bf3bf0.bindPopup(popup_ee36fa693d6f31eae91275c7de5f9e76)
+        ;
+
+        
+    
+    
+            var circle_marker_32968d69bc0a3221d36c0930828b195f = L.circleMarker(
+                [-4.14491, 122.174605],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_da07c7e383becd4258052f7fc29110bb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ca3ff16ca31c3b7a13f15fddaff83c6 = $(`<div id="html_8ca3ff16ca31c3b7a13f15fddaff83c6" style="width: 100.0%; height: 100.0%;"><b>74 - Sulawesi Tenggara</b><br>Cluster: 1<br>Total: 21,858 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_da07c7e383becd4258052f7fc29110bb.setContent(html_8ca3ff16ca31c3b7a13f15fddaff83c6);
+            
+        
+
+        circle_marker_32968d69bc0a3221d36c0930828b195f.bindPopup(popup_da07c7e383becd4258052f7fc29110bb)
+        ;
+
+        
+    
+    
+            var circle_marker_7bcef287ed6b3ea371df5442b63e426d = L.circleMarker(
+                [0.6999372, 122.4467238],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_15a786fed09c628901e265fc75da27e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_55dc428b84105e823e150427adb84aef = $(`<div id="html_55dc428b84105e823e150427adb84aef" style="width: 100.0%; height: 100.0%;"><b>75 - Gorontalo</b><br>Cluster: 1<br>Total: 1,561 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_15a786fed09c628901e265fc75da27e5.setContent(html_55dc428b84105e823e150427adb84aef);
+            
+        
+
+        circle_marker_7bcef287ed6b3ea371df5442b63e426d.bindPopup(popup_15a786fed09c628901e265fc75da27e5)
+        ;
+
+        
+    
+    
+            var circle_marker_206d806b0dfcf94f3071a8e53d1c1162 = L.circleMarker(
+                [-2.8441371, 119.2320784],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_b5d7334ed31a4dfa23bf52fc5fbfdb7a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8a3e736044c512dc1a5b9cb4e6c5d89 = $(`<div id="html_c8a3e736044c512dc1a5b9cb4e6c5d89" style="width: 100.0%; height: 100.0%;"><b>76 - Sulawesi Barat</b><br>Cluster: 1<br>Total: 16,996 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_b5d7334ed31a4dfa23bf52fc5fbfdb7a.setContent(html_c8a3e736044c512dc1a5b9cb4e6c5d89);
+            
+        
+
+        circle_marker_206d806b0dfcf94f3071a8e53d1c1162.bindPopup(popup_b5d7334ed31a4dfa23bf52fc5fbfdb7a)
+        ;
+
+        
+    
+    
+            var circle_marker_dd9310e395ba92d7c50a859b3c2e2eea = L.circleMarker(
+                [-3.2384616, 130.1452734],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_ebefab86c424471436d7c9b3601c1e78 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cf5ed95bcc34629938c1525dc375e3e3 = $(`<div id="html_cf5ed95bcc34629938c1525dc375e3e3" style="width: 100.0%; height: 100.0%;"><b>81 - Maluku</b><br>Cluster: 1<br>Total: 3,352 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_ebefab86c424471436d7c9b3601c1e78.setContent(html_cf5ed95bcc34629938c1525dc375e3e3);
+            
+        
+
+        circle_marker_dd9310e395ba92d7c50a859b3c2e2eea.bindPopup(popup_ebefab86c424471436d7c9b3601c1e78)
+        ;
+
+        
+    
+    
+            var circle_marker_83f06dee3ca8251728251c3f91144b38 = L.circleMarker(
+                [1.5709993, 127.8087693],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_169300e64597ecf22375a085ad2eff94 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_25d1116cbf31da3a26cd67937a951fc8 = $(`<div id="html_25d1116cbf31da3a26cd67937a951fc8" style="width: 100.0%; height: 100.0%;"><b>82 - Maluku Utara</b><br>Cluster: 1<br>Total: 370 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_169300e64597ecf22375a085ad2eff94.setContent(html_25d1116cbf31da3a26cd67937a951fc8);
+            
+        
+
+        circle_marker_83f06dee3ca8251728251c3f91144b38.bindPopup(popup_169300e64597ecf22375a085ad2eff94)
+        ;
+
+        
+    
+    
+            var circle_marker_6c8a0d292cbd40be637ec35cdda88b06 = L.circleMarker(
+                [-4.269928, 138.0803529],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_788b76e85f61f60f00e7e43c1382327f);
+        
+    
+        var popup_ba6553ea650b2a9724d6cd0c02fb74e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ac118f69fc51420aad6025674ec515e4 = $(`<div id="html_ac118f69fc51420aad6025674ec515e4" style="width: 100.0%; height: 100.0%;"><b>94 - Papua</b><br>Cluster: 1<br>Total: 672 kg<br>Kategori: Sangat Rendah</div>`)[0];
+                popup_ba6553ea650b2a9724d6cd0c02fb74e6.setContent(html_ac118f69fc51420aad6025674ec515e4);
+            
+        
+
+        circle_marker_6c8a0d292cbd40be637ec35cdda88b06.bindPopup(popup_ba6553ea650b2a9724d6cd0c02fb74e6)
+        ;
+
+        
+    
+</script>
+</html>
