@@ -81,13 +81,35 @@
 
                             <td>
                                 {% if item.grafik_path %}
-                                <a href="/{{ item.grafik_path }}" target="_blank" class="btn mini">Lihat</a>
+                                    {% if item.type == 'Produksi' %}
+                                        <div>
+                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Produksi_') }}" target="_blank" class="btn mini">Produksi</a>
+                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Luas_') }}" target="_blank" class="btn mini">Luas</a>
+                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Produktivitas_') }}" target="_blank" class="btn mini">Produktivitas</a>
+                                        </div>
+                                    {% else %}
+                                        <div>
+                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Berat_') }}" target="_blank" class="btn mini">Berat</a>
+                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Value_') }}" target="_blank" class="btn mini">Value</a>
+                                        </div>
+                                    {% endif %}
                                 {% else %}-{% endif %}
                             </td>
 
                             <td>
                                 {% if item.trend_path %}
-                                <a href="/{{ item.trend_path }}" target="_blank" class="btn mini">Lihat</a>
+                                    {% if item.type == 'Produksi' %}
+                                        <div>
+                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Produksi_') }}" target="_blank" class="btn mini">Produksi</a>
+                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Luas_') }}" target="_blank" class="btn mini">Luas</a>
+                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Produktivitas_') }}" target="_blank" class="btn mini">Produktivitas</a>
+                                        </div>
+                                    {% else %}
+                                        <div>
+                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Berat_') }}" target="_blank" class="btn mini">Berat</a>
+                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Value_') }}" target="_blank" class="btn mini">Value</a>
+                                        </div>
+                                    {% endif %}
                                 {% else %}-{% endif %}
                             </td>
 
@@ -137,6 +159,5 @@
         });
     });
 </script>
-
 </body>
 </html>

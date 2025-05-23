@@ -43,7 +43,7 @@ def plot_bar(df, lokasi_col, fitur, colors, file_id):
     plt.xticks(rotation=90)
     plt.title(f"Top 20 {lokasi_col} berdasarkan {fitur}")
     plt.tight_layout()
-    path = f"static/img/bar_{fitur}_{file_id}.png"
+    path = f"static/img/grafik_{fitur}_{file_id}.png"
     plt.savefig(path)
     plt.close()
     return path
@@ -57,7 +57,7 @@ def plot_trend(df, lokasi_col, cols, file_id, fitur):
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.title(f"Tren Tahunan {fitur}")
     plt.tight_layout(rect=[0, 0, 0.75, 1])
-    path = f"static/img/trend_{fitur}_{file_id}.png"
+    path = f"static/img/tren_{fitur}_{file_id}.png"
     plt.savefig(path)
     plt.close()
     return path
@@ -80,14 +80,14 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
 
     if lokasi_col not in df.columns or 'Latitude' not in df.columns or 'Longitude' not in df.columns:
         flash("Dataset tidak valid. Pastikan format sesuai.", "error")
-        return [], None, None, None, None, [], []
+        return [], {}, {}, None, None, [], []
 
     if is_ekspor:
         berat_cols = extract_year_columns(df, 'Berat')
         value_cols = extract_year_columns(df, 'Value')
         if not berat_cols or not value_cols:
             flash("Dataset ekspor harus memiliki kolom 'Berat' dan 'Value' per tahun.", "error")
-            return [], None, None, None, None, [], []
+            return [], {}, {}, None, None, [], []
         df['Total_Berat'] = df[berat_cols].sum(axis=1)
         df['Total_Value'] = df[value_cols].sum(axis=1)
         fitur_cols = ['Total_Berat', 'Total_Value']
@@ -97,7 +97,7 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
         produktivitas_cols = extract_year_columns(df, 'Produktivitas')
         if not produksi_cols or not luas_cols or not produktivitas_cols:
             flash("Dataset produksi harus memiliki kolom 'Produksi', 'Luas', dan 'Produktivitas' per tahun.", "error")
-            return [], None, None, None, None, [], []
+            return [], {}, {}, None, None, [], []
         df['Total_Produksi'] = df[produksi_cols].sum(axis=1)
         df['Total_Luas'] = df[luas_cols].sum(axis=1)
         df['Total_Produktivitas'] = df[produktivitas_cols].sum(axis=1)
@@ -128,22 +128,23 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
     cluster_table = [[f"Cluster {i}", ', '.join(df[df['Cluster'] == i][lokasi_col].tolist())] for i in range(n_clusters)]
     count_table = [[f"Cluster {i}", int((df['Cluster'] == i).sum())] for i in range(n_clusters)]
 
-    # === Grafik batang dan tren
+    # === Simpan grafik batang dan tren
     for fitur in fitur_cols:
         grafik_paths[fitur] = plot_bar(df, lokasi_col, fitur, cluster_colors, file_id)
-    if not is_ekspor:
+
+    if is_ekspor:
+        trend_paths = {
+            'Berat': plot_trend(df, lokasi_col, berat_cols, file_id, 'Berat'),
+            'Value': plot_trend(df, lokasi_col, value_cols, file_id, 'Value')
+        }
+    else:
         trend_paths = {
             'Produksi': plot_trend(df, lokasi_col, produksi_cols, file_id, 'Produksi'),
             'Luas': plot_trend(df, lokasi_col, luas_cols, file_id, 'Luas'),
             'Produktivitas': plot_trend(df, lokasi_col, produktivitas_cols, file_id, 'Produktivitas')
         }
-    else:
-        trend_paths = {
-            'Berat': plot_trend(df, lokasi_col, berat_cols, file_id, 'Berat'),
-            'Value': plot_trend(df, lokasi_col, value_cols, file_id, 'Value')
-        }
 
-    # === Peta
+    # === Peta Interaktif
     peta = folium.Map(location=[-2, 117], zoom_start=3 if not is_ekspor else 2)
     for _, row in df.iterrows():
         popup = f"<b>{row[lokasi_col]}</b><br>Cluster: {row['Cluster']}<br>Kategori: {row['Kategori']}<br>"
@@ -151,9 +152,9 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
             popup += f"{fitur.replace('_', ' ')}: {int(row[fitur]):,}<br>"
         folium.CircleMarker(
             location=[row['Latitude'], row['Longitude']],
-            radius=6,
-            color=row['Color'], fill=True, fill_opacity=0.7, popup=popup
+            radius=6, color=row['Color'], fill=True, fill_opacity=0.7, popup=popup
         ).add_to(peta)
+
     legend = '<div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey;"><strong>Legenda Cluster:</strong><br>'
     for i in range(n_clusters):
         legend += f'<i style="background:{cluster_colors[i]}; width:10px; height:10px; display:inline-block;"></i> Cluster {i} - {mapping[i]}<br>'
@@ -184,7 +185,9 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
         "peta_path": peta_path,
         "dendro_path": dendro_path,
         "cluster_table": cluster_table,
-        "count_table": count_table
+        "count_table": count_table,
+        "grafik_paths": list(grafik_paths.values()),
+        "trend_paths": list(trend_paths.values())
     })
 
     results.append({
