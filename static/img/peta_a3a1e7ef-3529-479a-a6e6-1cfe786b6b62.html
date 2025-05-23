@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3dec943f679272ac957649a1048d1937 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey;"><strong>Legenda Cluster:</strong><br><i style="background:#1f77b4; width:10px; height:10px; display:inline-block;"></i> Cluster 0 - Rendah<br><i style="background:#8c564b; width:10px; height:10px; display:inline-block;"></i> Cluster 1 - Tinggi<br><i style="background:#17becf; width:10px; height:10px; display:inline-block;"></i> Cluster 2 - Sedang<br></div>
+    
+            <div class="folium-map" id="map_3dec943f679272ac957649a1048d1937" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3dec943f679272ac957649a1048d1937 = L.map(
+                "map_3dec943f679272ac957649a1048d1937",
+                {
+                    center: [-2.0, 117.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_05393554af71cb9be59778d02358973f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_05393554af71cb9be59778d02358973f.addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+            var circle_marker_e7da45a5a55ad6f25da452bf0674cc9c = L.circleMarker(
+                [4.695135, 96.7493993],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_fd972b6465093c86d86e7efa238d76e7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3a9f19785562d694c4ff9b43874cca0 = $(`<div id="html_f3a9f19785562d694c4ff9b43874cca0" style="width: 100.0%; height: 100.0%;"><b>11 - Aceh</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 51,189<br>Total Luas: 178,651<br>Total Produktivitas: 4,637<br></div>`)[0];
+                popup_fd972b6465093c86d86e7efa238d76e7.setContent(html_f3a9f19785562d694c4ff9b43874cca0);
+            
+        
+
+        circle_marker_e7da45a5a55ad6f25da452bf0674cc9c.bindPopup(popup_fd972b6465093c86d86e7efa238d76e7)
+        ;
+
+        
+    
+    
+            var circle_marker_a14f34c19a7d2a5ca9a1c3ddf4677550 = L.circleMarker(
+                [2.1153547, 99.5450974],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_7b91f0a73a678dbb995d4798e37948b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2e5f31760f62e8bb1391e4934bc643cd = $(`<div id="html_2e5f31760f62e8bb1391e4934bc643cd" style="width: 100.0%; height: 100.0%;"><b>12 - Sumatera Utara</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 76,919<br>Total Luas: 152,755<br>Total Produktivitas: 6,510<br></div>`)[0];
+                popup_7b91f0a73a678dbb995d4798e37948b9.setContent(html_2e5f31760f62e8bb1391e4934bc643cd);
+            
+        
+
+        circle_marker_a14f34c19a7d2a5ca9a1c3ddf4677550.bindPopup(popup_7b91f0a73a678dbb995d4798e37948b9)
+        ;
+
+        
+    
+    
+            var circle_marker_bb21b106def7044776874eef883c8462 = L.circleMarker(
+                [-0.7399397, 100.8000051],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_3c75f8345cbe59000137ca97409a63e2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_48aef2b15e20b29e3125099682d8f595 = $(`<div id="html_48aef2b15e20b29e3125099682d8f595" style="width: 100.0%; height: 100.0%;"><b>13 - Sumatera Barat</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 88,060<br>Total Luas: 147,588<br>Total Produktivitas: 6,911<br></div>`)[0];
+                popup_3c75f8345cbe59000137ca97409a63e2.setContent(html_48aef2b15e20b29e3125099682d8f595);
+            
+        
+
+        circle_marker_bb21b106def7044776874eef883c8462.bindPopup(popup_3c75f8345cbe59000137ca97409a63e2)
+        ;
+
+        
+    
+    
+            var circle_marker_4c48f5ecc0a48427a098fe05a1b79c3d = L.circleMarker(
+                [0.2933469, 101.7068294],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_9a0039f751a585b31195ff03ce94b82b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_31e1de3f390aaa259a0676337d5736dc = $(`<div id="html_31e1de3f390aaa259a0676337d5736dc" style="width: 100.0%; height: 100.0%;"><b>14 - Riau</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 20,804<br>Total Luas: 36,402<br>Total Produktivitas: 7,879<br></div>`)[0];
+                popup_9a0039f751a585b31195ff03ce94b82b.setContent(html_31e1de3f390aaa259a0676337d5736dc);
+            
+        
+
+        circle_marker_4c48f5ecc0a48427a098fe05a1b79c3d.bindPopup(popup_9a0039f751a585b31195ff03ce94b82b)
+        ;
+
+        
+    
+    
+            var circle_marker_76042c3676c7715b52865182d5c01aa6 = L.circleMarker(
+                [-1.4851831, 102.4380581],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_de5a5ea3599e265d3f084e63ea1ddf32 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4e17f4781cc05992bacf488ee2cea064 = $(`<div id="html_4e17f4781cc05992bacf488ee2cea064" style="width: 100.0%; height: 100.0%;"><b>15 - Jambi</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 125,937<br>Total Luas: 207,459<br>Total Produktivitas: 7,452<br></div>`)[0];
+                popup_de5a5ea3599e265d3f084e63ea1ddf32.setContent(html_4e17f4781cc05992bacf488ee2cea064);
+            
+        
+
+        circle_marker_76042c3676c7715b52865182d5c01aa6.bindPopup(popup_de5a5ea3599e265d3f084e63ea1ddf32)
+        ;
+
+        
+    
+    
+            var circle_marker_733a7ae82e2dac4ae3ab916d01e2b90d = L.circleMarker(
+                [-3.3194374, 103.914399],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_865ba207e331e45a341e4bfa9f1aa570 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ca9efb5d61870432e4bac755da35288 = $(`<div id="html_4ca9efb5d61870432e4bac755da35288" style="width: 100.0%; height: 100.0%;"><b>16 - Sumatera Selatan</b><br>Cluster: 1<br>Kategori: Tinggi<br>Total Produksi: 1,418,678<br>Total Luas: 2,049,534<br>Total Produktivitas: 6,594<br></div>`)[0];
+                popup_865ba207e331e45a341e4bfa9f1aa570.setContent(html_4ca9efb5d61870432e4bac755da35288);
+            
+        
+
+        circle_marker_733a7ae82e2dac4ae3ab916d01e2b90d.bindPopup(popup_865ba207e331e45a341e4bfa9f1aa570)
+        ;
+
+        
+    
+    
+            var circle_marker_d74008f7c66b3883910459b84d3ffe4c = L.circleMarker(
+                [-3.5778471, 102.3463875],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_36479f2e5bcd1ec12c332b59afbfe196 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf1a7507392eae5e65cead164a93b0f5 = $(`<div id="html_bf1a7507392eae5e65cead164a93b0f5" style="width: 100.0%; height: 100.0%;"><b>17 - Bengkulu</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 471,575<br>Total Luas: 697,603<br>Total Produktivitas: 6,351<br></div>`)[0];
+                popup_36479f2e5bcd1ec12c332b59afbfe196.setContent(html_bf1a7507392eae5e65cead164a93b0f5);
+            
+        
+
+        circle_marker_d74008f7c66b3883910459b84d3ffe4c.bindPopup(popup_36479f2e5bcd1ec12c332b59afbfe196)
+        ;
+
+        
+    
+    
+            var circle_marker_9d0a1cb40dc39b04663f5a60453bbb61 = L.circleMarker(
+                [-4.5585849, 105.4068079],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_f1fd17d26c755743d3b9379115fd2992 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_057fc9e7a0e007615b644321bae58463 = $(`<div id="html_057fc9e7a0e007615b644321bae58463" style="width: 100.0%; height: 100.0%;"><b>18 - Lampung</b><br>Cluster: 1<br>Kategori: Tinggi<br>Total Produksi: 907,777<br>Total Luas: 1,261,285<br>Total Produktivitas: 6,515<br></div>`)[0];
+                popup_f1fd17d26c755743d3b9379115fd2992.setContent(html_057fc9e7a0e007615b644321bae58463);
+            
+        
+
+        circle_marker_9d0a1cb40dc39b04663f5a60453bbb61.bindPopup(popup_f1fd17d26c755743d3b9379115fd2992)
+        ;
+
+        
+    
+    
+            var circle_marker_c96fe850e450501e4fe4b302fe1d8e42 = L.circleMarker(
+                [-2.7410513, 106.4405872],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_7441064f8aee9ff91d8bd935598b7ffc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8be064e8fa2aadb4ae8707c8ff54dba6 = $(`<div id="html_8be064e8fa2aadb4ae8707c8ff54dba6" style="width: 100.0%; height: 100.0%;"><b>19 - Kepulauan Bangka Belitung</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 149<br>Total Luas: 737<br>Total Produktivitas: 3,832<br></div>`)[0];
+                popup_7441064f8aee9ff91d8bd935598b7ffc.setContent(html_8be064e8fa2aadb4ae8707c8ff54dba6);
+            
+        
+
+        circle_marker_c96fe850e450501e4fe4b302fe1d8e42.bindPopup(popup_7441064f8aee9ff91d8bd935598b7ffc)
+        ;
+
+        
+    
+    
+            var circle_marker_fac3db2d2e11506944354580d3758f34 = L.circleMarker(
+                [-7.090911, 107.668887],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_b034e58c6adc27d95e6f9e9be787ad37 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_663e2fcb7feb0fe592c3b394696967af = $(`<div id="html_663e2fcb7feb0fe592c3b394696967af" style="width: 100.0%; height: 100.0%;"><b>32 - Jawa Barat</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 72,405<br>Total Luas: 140,235<br>Total Produktivitas: 6,339<br></div>`)[0];
+                popup_b034e58c6adc27d95e6f9e9be787ad37.setContent(html_663e2fcb7feb0fe592c3b394696967af);
+            
+        
+
+        circle_marker_fac3db2d2e11506944354580d3758f34.bindPopup(popup_b034e58c6adc27d95e6f9e9be787ad37)
+        ;
+
+        
+    
+    
+            var circle_marker_9f16dfe20f2705dfed1041d5402d94fe = L.circleMarker(
+                [-7.150975, 110.1402594],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_b4a19c3865882ae8ea22012e8d2be2ae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_120a011b472098fcf7558fb848b56b87 = $(`<div id="html_120a011b472098fcf7558fb848b56b87" style="width: 100.0%; height: 100.0%;"><b>33 - Jawa Tengah</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 164,456<br>Total Luas: 292,048<br>Total Produktivitas: 5,701<br></div>`)[0];
+                popup_b4a19c3865882ae8ea22012e8d2be2ae.setContent(html_120a011b472098fcf7558fb848b56b87);
+            
+        
+
+        circle_marker_9f16dfe20f2705dfed1041d5402d94fe.bindPopup(popup_b4a19c3865882ae8ea22012e8d2be2ae)
+        ;
+
+        
+    
+    
+            var circle_marker_7b9ce8ce7389d38550197f1c84f3f7ae = L.circleMarker(
+                [-7.8753849, 110.4262088],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_29c26760b1146164258510153cf62ef6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7f1893b9eab05b530d8c6e28894cb3b5 = $(`<div id="html_7f1893b9eab05b530d8c6e28894cb3b5" style="width: 100.0%; height: 100.0%;"><b>34 - Daerah Istimewa Yogyakarta</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 3,718<br>Total Luas: 13,389<br>Total Produktivitas: 4,047<br></div>`)[0];
+                popup_29c26760b1146164258510153cf62ef6.setContent(html_7f1893b9eab05b530d8c6e28894cb3b5);
+            
+        
+
+        circle_marker_7b9ce8ce7389d38550197f1c84f3f7ae.bindPopup(popup_29c26760b1146164258510153cf62ef6)
+        ;
+
+        
+    
+    
+            var circle_marker_11f3ffb7129838e2d1c1a2858a127aff = L.circleMarker(
+                [-7.5360639, 112.2384017],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_26e57414bc9ee3d22309beb801762f3d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dc0d3aa83d51928dbf6f64aec21d5bd1 = $(`<div id="html_dc0d3aa83d51928dbf6f64aec21d5bd1" style="width: 100.0%; height: 100.0%;"><b>35 - Jawa Timur</b><br>Cluster: 2<br>Kategori: Sedang<br>Total Produksi: 319,030<br>Total Luas: 513,402<br>Total Produktivitas: 6,243<br></div>`)[0];
+                popup_26e57414bc9ee3d22309beb801762f3d.setContent(html_dc0d3aa83d51928dbf6f64aec21d5bd1);
+            
+        
+
+        circle_marker_11f3ffb7129838e2d1c1a2858a127aff.bindPopup(popup_26e57414bc9ee3d22309beb801762f3d)
+        ;
+
+        
+    
+    
+            var circle_marker_032872f95fa939ce62a23802c06f22b1 = L.circleMarker(
+                [-6.4058172, 106.0640179],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_11bb37690879b2b2fa96f81f68e0d8de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_62e86104b377eb27bb4a816e2badd36b = $(`<div id="html_62e86104b377eb27bb4a816e2badd36b" style="width: 100.0%; height: 100.0%;"><b>36 - Banten</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 18,095<br>Total Luas: 49,898<br>Total Produktivitas: 3,669<br></div>`)[0];
+                popup_11bb37690879b2b2fa96f81f68e0d8de.setContent(html_62e86104b377eb27bb4a816e2badd36b);
+            
+        
+
+        circle_marker_032872f95fa939ce62a23802c06f22b1.bindPopup(popup_11bb37690879b2b2fa96f81f68e0d8de)
+        ;
+
+        
+    
+    
+            var circle_marker_8c7dbb858802f29ef2af74e80b473563 = L.circleMarker(
+                [-8.4095178, 115.188916],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_aeeac82b543f5206a0e50921fec5cabf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_336d6cdd63248000eb7f5ef49b72fa44 = $(`<div id="html_336d6cdd63248000eb7f5ef49b72fa44" style="width: 100.0%; height: 100.0%;"><b>51 - Bali</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 93,074<br>Total Luas: 182,066<br>Total Produktivitas: 4,631<br></div>`)[0];
+                popup_aeeac82b543f5206a0e50921fec5cabf.setContent(html_336d6cdd63248000eb7f5ef49b72fa44);
+            
+        
+
+        circle_marker_8c7dbb858802f29ef2af74e80b473563.bindPopup(popup_aeeac82b543f5206a0e50921fec5cabf)
+        ;
+
+        
+    
+    
+            var circle_marker_8197cb7eb197322ffe49204b965051a9 = L.circleMarker(
+                [-8.6529334, 117.3616476],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_b76685c27655345c761208b3b85abe86 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5d53188ab551ee0f0913ff7012287a66 = $(`<div id="html_5d53188ab551ee0f0913ff7012287a66" style="width: 100.0%; height: 100.0%;"><b>52 - Nusa Tenggara Barat</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 37,754<br>Total Luas: 83,648<br>Total Produktivitas: 4,975<br></div>`)[0];
+                popup_b76685c27655345c761208b3b85abe86.setContent(html_5d53188ab551ee0f0913ff7012287a66);
+            
+        
+
+        circle_marker_8197cb7eb197322ffe49204b965051a9.bindPopup(popup_b76685c27655345c761208b3b85abe86)
+        ;
+
+        
+    
+    
+            var circle_marker_3592f021e4c259cb808ee3b29ae1a168 = L.circleMarker(
+                [-8.6573819, 121.0793705],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_2e28ea01b25c8860a5f397a6ada3bcdd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1be2db2ce4abe1fd1271f716bd6779db = $(`<div id="html_1be2db2ce4abe1fd1271f716bd6779db" style="width: 100.0%; height: 100.0%;"><b>53 - Nusa Tenggara Timur</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 126,988<br>Total Luas: 410,200<br>Total Produktivitas: 4,053<br></div>`)[0];
+                popup_2e28ea01b25c8860a5f397a6ada3bcdd.setContent(html_1be2db2ce4abe1fd1271f716bd6779db);
+            
+        
+
+        circle_marker_3592f021e4c259cb808ee3b29ae1a168.bindPopup(popup_2e28ea01b25c8860a5f397a6ada3bcdd)
+        ;
+
+        
+    
+    
+            var circle_marker_fa338fa59feec6304fd4ccddec878818 = L.circleMarker(
+                [-0.2787808, 111.4752851],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_5a470ab059df327b612cdb8706b13de0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f994a6d4ff28b7737ce700c0a4e16f3c = $(`<div id="html_f994a6d4ff28b7737ce700c0a4e16f3c" style="width: 100.0%; height: 100.0%;"><b>61 - Kalimantan Barat</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 28,624<br>Total Luas: 86,099<br>Total Produktivitas: 4,719<br></div>`)[0];
+                popup_5a470ab059df327b612cdb8706b13de0.setContent(html_f994a6d4ff28b7737ce700c0a4e16f3c);
+            
+        
+
+        circle_marker_fa338fa59feec6304fd4ccddec878818.bindPopup(popup_5a470ab059df327b612cdb8706b13de0)
+        ;
+
+        
+    
+    
+            var circle_marker_11c48a77eb0c0261bfb8a5c20da8e3c7 = L.circleMarker(
+                [-1.6814878, 113.3823545],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_0fd57b02927cfa41edaedcac3ddb2f52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_38bfddc0a1fc6716025d7dad5e2836e2 = $(`<div id="html_38bfddc0a1fc6716025d7dad5e2836e2" style="width: 100.0%; height: 100.0%;"><b>62 - Kalimantan Tengah</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 3,110<br>Total Luas: 16,189<br>Total Produktivitas: 4,824<br></div>`)[0];
+                popup_0fd57b02927cfa41edaedcac3ddb2f52.setContent(html_38bfddc0a1fc6716025d7dad5e2836e2);
+            
+        
+
+        circle_marker_11c48a77eb0c0261bfb8a5c20da8e3c7.bindPopup(popup_0fd57b02927cfa41edaedcac3ddb2f52)
+        ;
+
+        
+    
+    
+            var circle_marker_12f5b2fd3bc9d4f1c952f7c2b2d4b731 = L.circleMarker(
+                [-3.0926415, 115.2837585],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_7b7310df2f86d3ea5eb90e384c9f0f9b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_232fd3df90ce2240854059cac0d931de = $(`<div id="html_232fd3df90ce2240854059cac0d931de" style="width: 100.0%; height: 100.0%;"><b>63 - Kalimantan Selatan</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 11,194<br>Total Luas: 24,430<br>Total Produktivitas: 4,897<br></div>`)[0];
+                popup_7b7310df2f86d3ea5eb90e384c9f0f9b.setContent(html_232fd3df90ce2240854059cac0d931de);
+            
+        
+
+        circle_marker_12f5b2fd3bc9d4f1c952f7c2b2d4b731.bindPopup(popup_7b7310df2f86d3ea5eb90e384c9f0f9b)
+        ;
+
+        
+    
+    
+            var circle_marker_5fd91d32008c0467284e7e15e9be2e65 = L.circleMarker(
+                [1.6406296, 116.419389],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_004946d2c8b2d69d98a769323272eb76 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_659fc0fd9ac4a0ce31dd952b000f990f = $(`<div id="html_659fc0fd9ac4a0ce31dd952b000f990f" style="width: 100.0%; height: 100.0%;"><b>64 - Kalimantan Timur</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 2,183<br>Total Luas: 19,358<br>Total Produktivitas: 2,009<br></div>`)[0];
+                popup_004946d2c8b2d69d98a769323272eb76.setContent(html_659fc0fd9ac4a0ce31dd952b000f990f);
+            
+        
+
+        circle_marker_5fd91d32008c0467284e7e15e9be2e65.bindPopup(popup_004946d2c8b2d69d98a769323272eb76)
+        ;
+
+        
+    
+    
+            var circle_marker_4510b54ad031e83ff3db0d2ef5090e08 = L.circleMarker(
+                [3.154208, 116.033767],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_9d38769a34b0f68c2b52a7534a76a43c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_268944597d692ae8a1496f0cef036163 = $(`<div id="html_268944597d692ae8a1496f0cef036163" style="width: 100.0%; height: 100.0%;"><b>65 - Kalimantan Utara</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 1,757<br>Total Luas: 11,847<br>Total Produktivitas: 2,837<br></div>`)[0];
+                popup_9d38769a34b0f68c2b52a7534a76a43c.setContent(html_268944597d692ae8a1496f0cef036163);
+            
+        
+
+        circle_marker_4510b54ad031e83ff3db0d2ef5090e08.bindPopup(popup_9d38769a34b0f68c2b52a7534a76a43c)
+        ;
+
+        
+    
+    
+            var circle_marker_068f89271944cc035b5ff59ea20666d3 = L.circleMarker(
+                [0.6246932, 123.9750018],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_e91d44fc4535e7df1eb42843e957c1e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1c466058caa7d9083bbd017f5efba6fa = $(`<div id="html_1c466058caa7d9083bbd017f5efba6fa" style="width: 100.0%; height: 100.0%;"><b>71 - Sulawesi Utara</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 27,915<br>Total Luas: 58,436<br>Total Produktivitas: 5,061<br></div>`)[0];
+                popup_e91d44fc4535e7df1eb42843e957c1e0.setContent(html_1c466058caa7d9083bbd017f5efba6fa);
+            
+        
+
+        circle_marker_068f89271944cc035b5ff59ea20666d3.bindPopup(popup_e91d44fc4535e7df1eb42843e957c1e0)
+        ;
+
+        
+    
+    
+            var circle_marker_96a3195fb5a0695e6554b285d1a6e448 = L.circleMarker(
+                [-1.4300254, 121.4456179],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_a29a4ef6f8e40afe374c1f82a1fc2795 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_828361f73119c9b5f8e320dd4568377e = $(`<div id="html_828361f73119c9b5f8e320dd4568377e" style="width: 100.0%; height: 100.0%;"><b>72 - Sulawesi Tengah</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 22,901<br>Total Luas: 72,044<br>Total Produktivitas: 5,543<br></div>`)[0];
+                popup_a29a4ef6f8e40afe374c1f82a1fc2795.setContent(html_828361f73119c9b5f8e320dd4568377e);
+            
+        
+
+        circle_marker_96a3195fb5a0695e6554b285d1a6e448.bindPopup(popup_a29a4ef6f8e40afe374c1f82a1fc2795)
+        ;
+
+        
+    
+    
+            var circle_marker_3fa4224c87af1491af6ce1b15412c4b3 = L.circleMarker(
+                [-3.6687994, 119.9740534],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_8815273658b773d09617cbe1792dabee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_77a8217e1618bb005ef87e7e73f2ed05 = $(`<div id="html_77a8217e1618bb005ef87e7e73f2ed05" style="width: 100.0%; height: 100.0%;"><b>73 - Sulawesi Selatan</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 72,843<br>Total Luas: 186,906<br>Total Produktivitas: 4,388<br></div>`)[0];
+                popup_8815273658b773d09617cbe1792dabee.setContent(html_77a8217e1618bb005ef87e7e73f2ed05);
+            
+        
+
+        circle_marker_3fa4224c87af1491af6ce1b15412c4b3.bindPopup(popup_8815273658b773d09617cbe1792dabee)
+        ;
+
+        
+    
+    
+            var circle_marker_bf895e2ad8cd644875f8562b7a152965 = L.circleMarker(
+                [-4.14491, 122.174605],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_1a9da096a0165e8021fbe0051ec3cd46 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_08ed61f719fe3b94868c5cdbaacc9675 = $(`<div id="html_08ed61f719fe3b94868c5cdbaacc9675" style="width: 100.0%; height: 100.0%;"><b>74 - Sulawesi Tenggara</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 21,858<br>Total Luas: 70,748<br>Total Produktivitas: 3,598<br></div>`)[0];
+                popup_1a9da096a0165e8021fbe0051ec3cd46.setContent(html_08ed61f719fe3b94868c5cdbaacc9675);
+            
+        
+
+        circle_marker_bf895e2ad8cd644875f8562b7a152965.bindPopup(popup_1a9da096a0165e8021fbe0051ec3cd46)
+        ;
+
+        
+    
+    
+            var circle_marker_9a68827c025ea679100e93023feac29c = L.circleMarker(
+                [0.6999372, 122.4467238],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_55637ae17bb475f955b61b7682c0a7a4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e15fb772ec64fdd4fb0ec48a5f57909 = $(`<div id="html_7e15fb772ec64fdd4fb0ec48a5f57909" style="width: 100.0%; height: 100.0%;"><b>75 - Gorontalo</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 1,561<br>Total Luas: 11,933<br>Total Produktivitas: 2,128<br></div>`)[0];
+                popup_55637ae17bb475f955b61b7682c0a7a4.setContent(html_7e15fb772ec64fdd4fb0ec48a5f57909);
+            
+        
+
+        circle_marker_9a68827c025ea679100e93023feac29c.bindPopup(popup_55637ae17bb475f955b61b7682c0a7a4)
+        ;
+
+        
+    
+    
+            var circle_marker_5fbe9d0089c7e6f14501f1b316574a50 = L.circleMarker(
+                [-2.8441371, 119.2320784],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_ce7c6656a36bd5bffd5db79a8b7e53d3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ba66257562cb967ecfee7c57115ca6a5 = $(`<div id="html_ba66257562cb967ecfee7c57115ca6a5" style="width: 100.0%; height: 100.0%;"><b>76 - Sulawesi Barat</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 16,996<br>Total Luas: 65,266<br>Total Produktivitas: 5,025<br></div>`)[0];
+                popup_ce7c6656a36bd5bffd5db79a8b7e53d3.setContent(html_ba66257562cb967ecfee7c57115ca6a5);
+            
+        
+
+        circle_marker_5fbe9d0089c7e6f14501f1b316574a50.bindPopup(popup_ce7c6656a36bd5bffd5db79a8b7e53d3)
+        ;
+
+        
+    
+    
+            var circle_marker_329baab81e236455ac3a1394f825030a = L.circleMarker(
+                [-3.2384616, 130.1452734],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_b9f05e6b33a224d82f01ae093b808edd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c573de7e688b6b7a76fb88ff0ab8f9d4 = $(`<div id="html_c573de7e688b6b7a76fb88ff0ab8f9d4" style="width: 100.0%; height: 100.0%;"><b>81 - Maluku</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 3,352<br>Total Luas: 10,100<br>Total Produktivitas: 4,986<br></div>`)[0];
+                popup_b9f05e6b33a224d82f01ae093b808edd.setContent(html_c573de7e688b6b7a76fb88ff0ab8f9d4);
+            
+        
+
+        circle_marker_329baab81e236455ac3a1394f825030a.bindPopup(popup_b9f05e6b33a224d82f01ae093b808edd)
+        ;
+
+        
+    
+    
+            var circle_marker_9af4287e30fbc26bec50d42a58d3a166 = L.circleMarker(
+                [1.5709993, 127.8087693],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_57c227b02c6ca0fc1719f6ccbc3ae2c7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_22ce50ac2d5a7bc6da9b61f54b7c0daa = $(`<div id="html_22ce50ac2d5a7bc6da9b61f54b7c0daa" style="width: 100.0%; height: 100.0%;"><b>82 - Maluku Utara</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 370<br>Total Luas: 7,199<br>Total Produktivitas: 1,746<br></div>`)[0];
+                popup_57c227b02c6ca0fc1719f6ccbc3ae2c7.setContent(html_22ce50ac2d5a7bc6da9b61f54b7c0daa);
+            
+        
+
+        circle_marker_9af4287e30fbc26bec50d42a58d3a166.bindPopup(popup_57c227b02c6ca0fc1719f6ccbc3ae2c7)
+        ;
+
+        
+    
+    
+            var circle_marker_4ecc1503227ea4be3ab6b793e2c1b6d5 = L.circleMarker(
+                [-4.269928, 138.0803529],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_3dec943f679272ac957649a1048d1937);
+        
+    
+        var popup_26f59fe57b7371ec963e18447e29ef16 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6cd2ce2125014e4273dfeba80e29477f = $(`<div id="html_6cd2ce2125014e4273dfeba80e29477f" style="width: 100.0%; height: 100.0%;"><b>94 - Papua</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Produksi: 672<br>Total Luas: 2,810<br>Total Produktivitas: 3,678<br></div>`)[0];
+                popup_26f59fe57b7371ec963e18447e29ef16.setContent(html_6cd2ce2125014e4273dfeba80e29477f);
+            
+        
+
+        circle_marker_4ecc1503227ea4be3ab6b793e2c1b6d5.bindPopup(popup_26f59fe57b7371ec963e18447e29ef16)
+        ;
+
+        
+    
+</script>
+</html>

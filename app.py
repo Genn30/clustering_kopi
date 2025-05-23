@@ -22,30 +22,54 @@ from collections import defaultdict
 app = Flask(__name__)
 app.secret_key = 'secret-key'
 
-# === MongoDB ===
 client = MongoClient("mongodb://localhost:27017/")
 db = client["user_database"]
 users_collection = db["users"]
 history_collection = db["history"]
 
-# === Fungsi untuk menentukan kategori berdasarkan rata-rata total per cluster ===
 def get_cluster_categories(n):
     if n == 2: return ["Rendah", "Tinggi"]
     if n == 3: return ["Rendah", "Sedang", "Tinggi"]
     if n == 4: return ["Rendah", "Sedang", "Menengah Tinggi", "Tinggi"]
-    if n == 5: return ["Sangat Rendah", "Rendah", "Sedang", "Tinggi", "Sangat Tinggi"]
-    if n == 6: return ["Sangat Rendah", "Rendah", "Sedikit", "Sedang", "Tinggi", "Sangat Tinggi"]
     return ["Sangat Rendah", "Rendah", "Cukup Rendah", "Sedang", "Cukup Tinggi", "Tinggi", "Sangat Tinggi"]
 
-# === Fungsi Proses Clustering ===
+def extract_year_columns(df, keyword):
+    return [col for col in df.columns if keyword in col and col.split()[-1].isdigit()]
+
+def plot_bar(df, lokasi_col, fitur, colors, file_id):
+    top = df.sort_values(fitur, ascending=False).head(20)
+    plt.figure(figsize=(12, 6))
+    plt.bar(top[lokasi_col], top[fitur], color=top['Color'])
+    plt.xticks(rotation=90)
+    plt.title(f"Top 20 {lokasi_col} berdasarkan {fitur}")
+    plt.tight_layout()
+    path = f"static/img/bar_{fitur}_{file_id}.png"
+    plt.savefig(path)
+    plt.close()
+    return path
+
+def plot_trend(df, lokasi_col, cols, file_id, fitur):
+    top = df.sort_values(cols[-1], ascending=False).head(10)
+    plt.figure(figsize=(12, 6))
+    for _, row in top.iterrows():
+        label = row[lokasi_col]
+        plt.plot([int(c.split()[-1]) for c in cols], row[cols].values, label=label, marker='o')
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.title(f"Tren Tahunan {fitur}")
+    plt.tight_layout(rect=[0, 0, 0.75, 1])
+    path = f"static/img/trend_{fitur}_{file_id}.png"
+    plt.savefig(path)
+    plt.close()
+    return path
+
 def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
     results = []
-    grafik_path, trend_path, peta_path, dendro_path = None, None, None, None
+    grafik_paths, trend_paths = {}, {}
+    peta_path, dendro_path = None, None
     cluster_table, count_table = [], []
 
     os.makedirs('uploads', exist_ok=True)
     os.makedirs('static/img', exist_ok=True)
-
     file_id = str(uuid.uuid4())
     filename = f"{file_id}_{uploaded_file.filename}"
     file_path = os.path.join('uploads', filename)
@@ -53,121 +77,101 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
 
     df = pd.read_excel(file_path)
     lokasi_col = 'Negara Tujuan' if is_ekspor else 'Lokasi'
-    total_col = 'Berat' if is_ekspor else 'Produksi'
 
-    if lokasi_col not in df.columns or not any(total_col in c for c in df.columns):
-        flash("Dataset tidak valid. Pastikan format file sesuai template yang diberikan.", "error")
+    if lokasi_col not in df.columns or 'Latitude' not in df.columns or 'Longitude' not in df.columns:
+        flash("Dataset tidak valid. Pastikan format sesuai.", "error")
         return [], None, None, None, None, [], []
 
-    tahun_cols = [col for col in df.columns if total_col in col and any(str(y) in col for y in range(2015, 2023))]
-    if len(tahun_cols) == 0:
-        flash("Dataset tidak valid. Kolom tahun tidak ditemukan.", "error")
-        return [], None, None, None, None, [], []
+    if is_ekspor:
+        berat_cols = extract_year_columns(df, 'Berat')
+        value_cols = extract_year_columns(df, 'Value')
+        if not berat_cols or not value_cols:
+            flash("Dataset ekspor harus memiliki kolom 'Berat' dan 'Value' per tahun.", "error")
+            return [], None, None, None, None, [], []
+        df['Total_Berat'] = df[berat_cols].sum(axis=1)
+        df['Total_Value'] = df[value_cols].sum(axis=1)
+        fitur_cols = ['Total_Berat', 'Total_Value']
+    else:
+        produksi_cols = extract_year_columns(df, 'Produksi')
+        luas_cols = extract_year_columns(df, 'Luas')
+        produktivitas_cols = extract_year_columns(df, 'Produktivitas')
+        if not produksi_cols or not luas_cols or not produktivitas_cols:
+            flash("Dataset produksi harus memiliki kolom 'Produksi', 'Luas', dan 'Produktivitas' per tahun.", "error")
+            return [], None, None, None, None, [], []
+        df['Total_Produksi'] = df[produksi_cols].sum(axis=1)
+        df['Total_Luas'] = df[luas_cols].sum(axis=1)
+        df['Total_Produktivitas'] = df[produktivitas_cols].sum(axis=1)
+        fitur_cols = ['Total_Produksi', 'Total_Luas', 'Total_Produktivitas']
 
-    df['Total'] = df[tahun_cols].sum(axis=1)
-    df_numeric = df[tahun_cols].copy().dropna()
     scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(df_numeric)
+    X_scaled = scaler.fit_transform(df[fitur_cols])
 
     start = time.time()
-    if method == "kmeans":
-        model = KMeans(n_clusters=n_clusters, random_state=42, n_init='auto')
-        algo = "K-Means"
-        labels = model.fit_predict(X_scaled)
-    elif method == "agglo":
-        model = AgglomerativeClustering(n_clusters=n_clusters)
-        algo = "Agglomerative"
-        labels = model.fit_predict(X_scaled)
-        linked = linkage(X_scaled, method='ward')
-        threshold = linked[-(n_clusters - 1), 2]
-        plt.figure(figsize=(15, 7))
-        dendrogram(linked, color_threshold=threshold, orientation='top', distance_sort='descending', show_leaf_counts=True)
-        plt.title("Dendrogram Agglomerative Clustering")
-        plt.tight_layout()
-        dendro_path = f"static/img/dendrogram_{file_id}.png"
-        plt.savefig(dendro_path)
-        plt.close()
-    else:
-        flash("Metode clustering tidak dikenali.", "error")
-        return [], None, None, None, None, [], []
-
-    df['Cluster'] = labels
+    model = KMeans(n_clusters=n_clusters, random_state=42, n_init='auto') if method == "kmeans" else AgglomerativeClustering(n_clusters=n_clusters)
+    labels = model.fit_predict(X_scaled)
+    algo = "K-Means" if method == "kmeans" else "Agglomerative"
+    exec_time = round(time.time() - start, 4)
     silhouette = round(silhouette_score(X_scaled, labels), 2)
     dbi = round(davies_bouldin_score(X_scaled, labels), 2)
-    exec_time = round(time.time() - start, 4)
 
+    df['Cluster'] = labels
     colormap = cm.get_cmap('tab10', n_clusters)
     cluster_colors = [mcolors.rgb2hex(colormap(i)) for i in range(n_clusters)]
     df['Color'] = df['Cluster'].map(lambda c: cluster_colors[c])
 
-    # === Kategori berdasarkan rata-rata total tiap cluster ===
-    cluster_means = df.groupby('Cluster')['Total'].mean().sort_values()
-    cluster_categories = get_cluster_categories(n_clusters)
-    cluster_cat_map = {cluster: cluster_categories[i] for i, cluster in enumerate(cluster_means.index)}
-    df['Kategori'] = df['Cluster'].map(cluster_cat_map)
+    utama = fitur_cols[0]
+    cluster_means = df.groupby('Cluster')[utama].mean().sort_values()
+    kategori = get_cluster_categories(n_clusters)
+    mapping = {cluster: kategori[i] for i, cluster in enumerate(cluster_means.index)}
+    df['Kategori'] = df['Cluster'].map(mapping)
 
-    # === Tabel Anggota & Jumlah ===
-    cluster_table_df = df[[lokasi_col, 'Cluster']].sort_values('Cluster')
-    cluster_table = []
+    cluster_table = [[f"Cluster {i}", ', '.join(df[df['Cluster'] == i][lokasi_col].tolist())] for i in range(n_clusters)]
+    count_table = [[f"Cluster {i}", int((df['Cluster'] == i).sum())] for i in range(n_clusters)]
+
+    # === Grafik batang dan tren
+    for fitur in fitur_cols:
+        grafik_paths[fitur] = plot_bar(df, lokasi_col, fitur, cluster_colors, file_id)
+    if not is_ekspor:
+        trend_paths = {
+            'Produksi': plot_trend(df, lokasi_col, produksi_cols, file_id, 'Produksi'),
+            'Luas': plot_trend(df, lokasi_col, luas_cols, file_id, 'Luas'),
+            'Produktivitas': plot_trend(df, lokasi_col, produktivitas_cols, file_id, 'Produktivitas')
+        }
+    else:
+        trend_paths = {
+            'Berat': plot_trend(df, lokasi_col, berat_cols, file_id, 'Berat'),
+            'Value': plot_trend(df, lokasi_col, value_cols, file_id, 'Value')
+        }
+
+    # === Peta
+    peta = folium.Map(location=[-2, 117], zoom_start=3 if not is_ekspor else 2)
+    for _, row in df.iterrows():
+        popup = f"<b>{row[lokasi_col]}</b><br>Cluster: {row['Cluster']}<br>Kategori: {row['Kategori']}<br>"
+        for fitur in fitur_cols:
+            popup += f"{fitur.replace('_', ' ')}: {int(row[fitur]):,}<br>"
+        folium.CircleMarker(
+            location=[row['Latitude'], row['Longitude']],
+            radius=6,
+            color=row['Color'], fill=True, fill_opacity=0.7, popup=popup
+        ).add_to(peta)
+    legend = '<div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey;"><strong>Legenda Cluster:</strong><br>'
     for i in range(n_clusters):
-        anggota = cluster_table_df[cluster_table_df['Cluster'] == i][lokasi_col].tolist()
-        cluster_table.append([f"Cluster {i}", ', '.join(anggota)])
-    cluster_counts = df['Cluster'].value_counts().sort_index()
-    count_table = [[f"Cluster {i}", int(cluster_counts[i])] for i in range(n_clusters)]
+        legend += f'<i style="background:{cluster_colors[i]}; width:10px; height:10px; display:inline-block;"></i> Cluster {i} - {mapping[i]}<br>'
+    legend += '</div>'
+    peta.get_root().html.add_child(folium.Element(legend))
+    peta_path = f"static/img/peta_{file_id}.html"
+    peta.save(peta_path)
 
-    # === Grafik Batang Top 20 ===
-    top = df.sort_values('Total', ascending=False).head(20)
-    plt.figure(figsize=(12, 6))
-    plt.bar(top[lokasi_col], top['Total'], color=top['Color'])
-    plt.xticks(rotation=90)
-    plt.title(f"Top 20 {'Negara' if is_ekspor else 'Kabupaten/Kota'} Berdasarkan Total {'Ekspor' if is_ekspor else 'Produksi'} ({algo})")
-    plt.xlabel("Negara" if is_ekspor else "Kabupaten/Kota")
-    plt.ylabel("Total (Ton)")
-    plt.tight_layout()
-    grafik_path = f"static/img/grafik_{file_id}.png"
-    plt.savefig(grafik_path)
-    plt.close()
+    if method == "agglo":
+        plt.figure(figsize=(15, 7))
+        linked = linkage(X_scaled, method='ward')
+        threshold = linked[-(n_clusters - 1), 2]
+        dendrogram(linked, color_threshold=threshold, orientation='top', show_leaf_counts=True)
+        plt.tight_layout()
+        dendro_path = f"static/img/dendrogram_{file_id}.png"
+        plt.savefig(dendro_path)
+        plt.close()
 
-    # === Grafik Tren Tahunan Top 10 ===
-    top10 = df.sort_values('Total', ascending=False).head(10)
-    plt.figure(figsize=(12, 6))
-    for _, row in top10.iterrows():
-        plt.plot([int(col.split()[-1]) for col in tahun_cols], row[tahun_cols].values, marker='o', label=row[lokasi_col])
-    plt.title(f"Grafik Tren Tahunan {'Berat' if is_ekspor else 'Produksi'} (Top 10)")
-    plt.xlabel("Tahun")
-    plt.ylabel("Total (kg)")
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
-    plt.tight_layout(rect=[0, 0, 0.75, 1])  # untuk memberi ruang bagi legend
-    plt.tight_layout()
-    trend_path = f"static/img/tren_{file_id}.png"
-    plt.savefig(trend_path)
-    plt.close()
-
-    # === Peta Interaktif ===
-    peta_path = None
-    if 'Latitude' in df.columns and 'Longitude' in df.columns:
-        peta = folium.Map(location=[0, 120], zoom_start=3)
-        for _, row in df.iterrows():
-            popup = f"<b>{row[lokasi_col]}</b><br>Cluster: {row['Cluster']}<br>Total: {int(row['Total']):,} kg<br>Kategori: {row['Kategori']}"
-            folium.CircleMarker(
-                location=[row['Latitude'], row['Longitude']],
-                radius=6,
-                color=row['Color'],
-                fill=True,
-                fill_opacity=0.7,
-                popup=popup
-            ).add_to(peta)
-
-        # Tambahkan legenda
-        legend_html = '<div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey; border-radius:5px;"><strong>Legenda Cluster:</strong><br>'
-        for i in range(n_clusters):
-            legend_html += f'<i style="background:{cluster_colors[i]}; width:10px; height:10px; display:inline-block;"></i> Cluster {i} - {cluster_cat_map[i]}<br>'
-        legend_html += '</div>'
-        peta.get_root().html.add_child(folium.Element(legend_html))
-        peta_path = f"static/img/peta_{file_id}.html"
-        peta.save(peta_path)
-
-    # Simpan ke MongoDB
     history_collection.insert_one({
         "username": session.get("username", "guest"),
         "timestamp": datetime.now(),
@@ -177,10 +181,10 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
         "silhouette": silhouette,
         "dbi": dbi,
         "time_exec": exec_time,
-        "grafik_path": grafik_path,
-        "trend_path": trend_path,
         "peta_path": peta_path,
-        "dendro_path": dendro_path
+        "dendro_path": dendro_path,
+        "cluster_table": cluster_table,
+        "count_table": count_table
     })
 
     results.append({
@@ -191,21 +195,46 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
         'Execution Time (s)': exec_time
     })
 
-    return results, grafik_path, trend_path, peta_path, dendro_path, cluster_table, count_table
+    return results, grafik_paths, trend_paths, peta_path, dendro_path, cluster_table, count_table
 
-# === ROUTES ===
 @app.route('/')
-def home():
-    return render_template('home.html')
+def home(): return render_template('home.html')
+
+@app.route('/clustering', methods=['GET', 'POST'])
+def clustering():
+    hasil = [], {}, {}, None, None, [], []
+    if request.method == 'POST':
+        if 'username' not in session: flash("Anda harus login terlebih dahulu.", "error")
+        else:
+            f = request.files.get('file')
+            method = request.form.get('algorithm')
+            n = int(request.form.get('n_clusters', 3))
+            if f and method: hasil = proses_clustering(f, method, n, is_ekspor=False)
+            else: flash("Lengkapi semua pilihan clustering.", "error")
+    return render_template('clustering.html', results=hasil[0], grafik_paths=hasil[1], trend_paths=hasil[2],
+        peta_path=hasil[3], dendro_path=hasil[4], cluster_table=hasil[5], count_table=hasil[6])
+
+@app.route('/clustering/ekspor', methods=['GET', 'POST'])
+def clustering_ekspor():
+    hasil = [], {}, {}, None, None, [], []
+    if request.method == 'POST':
+        if 'username' not in session: flash("Anda harus login terlebih dahulu.", "error")
+        else:
+            f = request.files.get('file')
+            method = request.form.get('method')
+            n = int(request.form.get('n_clusters', 3))
+            if f and method: hasil = proses_clustering(f, method, n, is_ekspor=True)
+            else: flash("Lengkapi semua pilihan clustering.", "error")
+    return render_template('clustering_ekspor.html', results=hasil[0], grafik_paths=hasil[1], trend_paths=hasil[2],
+        peta_path=hasil[3], dendro_path=hasil[4], cluster_table=hasil[5], count_table=hasil[6])
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = users_collection.find_one({"username": username, "password": password})
-        if user:
-            session['username'] = username
+        uname = request.form['username']
+        pwd = request.form['password']
+        if users_collection.find_one({"username": uname, "password": pwd}):
+            session['username'] = uname
             flash("Login berhasil.", "success")
             return redirect(url_for('home'))
         flash("Username atau password salah.", "error")
@@ -214,12 +243,11 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if users_collection.find_one({"username": username}):
-            flash("Username sudah digunakan.", "error")
+        uname = request.form['username']
+        pwd = request.form['password']
+        if users_collection.find_one({"username": uname}): flash("Username sudah digunakan.", "error")
         else:
-            users_collection.insert_one({"username": username, "password": password})
+            users_collection.insert_one({"username": uname, "password": pwd})
             flash("Registrasi berhasil. Silakan login.", "success")
             return redirect(url_for('login'))
     return render_template('register.html')
@@ -230,54 +258,17 @@ def logout():
     flash("Anda telah logout.", "info")
     return redirect(url_for('home'))
 
-@app.route('/clustering', methods=['GET', 'POST'])
-def clustering():
-    results, grafik_path, trend_path, peta_path, dendro_path, cluster_table, count_table = [], None, None, None, None, [], []
-    if request.method == 'POST':
-        if 'username' not in session:
-            flash("Anda harus login terlebih dahulu.", "error")
-        else:
-            uploaded_file = request.files.get('file')
-            method = request.form.get('algorithm')
-            n_clusters = int(request.form.get('n_clusters', 3))
-            if uploaded_file and method:
-                results, grafik_path, trend_path, peta_path, dendro_path, cluster_table, count_table = proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False)
-            else:
-                flash("Lengkapi semua pilihan clustering.", "error")
-    return render_template('clustering.html', results=results, grafik_path=grafik_path, trend_path=trend_path,
-                           peta_path=peta_path, dendro_path=dendro_path,
-                           cluster_table=cluster_table, count_table=count_table)
-
-@app.route('/clustering/ekspor', methods=['GET', 'POST'])
-def clustering_ekspor():
-    results, grafik_path, trend_path, peta_path, dendro_path, cluster_table, count_table = [], None, None, None, None, [], []
-    if request.method == 'POST':
-        if 'username' not in session:
-            flash("Anda harus login terlebih dahulu.", "error")
-        else:
-            uploaded_file = request.files.get('file')
-            method = request.form.get('method')
-            n_clusters = int(request.form.get('n_clusters', 3))
-            if uploaded_file and method:
-                results, grafik_path, trend_path, peta_path, dendro_path, cluster_table, count_table = proses_clustering(uploaded_file, method, n_clusters, is_ekspor=True)
-            else:
-                flash("Lengkapi semua pilihan clustering.", "error")
-    return render_template('clustering_ekspor.html', results=results, grafik_path=grafik_path, trend_path=trend_path,
-                           peta_path=peta_path, dendro_path=dendro_path,
-                           cluster_table=cluster_table, count_table=count_table)
-
 @app.route('/history')
 def history():
     all_history = list(history_collection.find().sort("timestamp", -1))
-    grouped_history = defaultdict(list)
+    grouped = defaultdict(list)
     for h in all_history:
-        date_str = h["timestamp"].strftime('%d/%m/%Y')
-        grouped_history[date_str].append(h)
-    return render_template('history.html', grouped_history=grouped_history)
+        tgl = h["timestamp"].strftime('%d/%m/%Y')
+        grouped[tgl].append(h)
+    return render_template('history.html', grouped_history=grouped)
 
 @app.route('/about')
-def about():
-    return render_template('about.html')
+def about(): return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

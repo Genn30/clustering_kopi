@@ -81,43 +81,31 @@
         {% endwith %}
     </section>
 
-    {% if count_table|default([]) %}
+    {% if count_table %}
     <section class="clustering-result">
         <h3>Jumlah Data per Cluster</h3>
         <table>
-            <tr>
-                <th>Cluster</th>
-                <th>Jumlah Data</th>
-            </tr>
+            <tr><th>Cluster</th><th>Jumlah Data</th></tr>
             {% for row in count_table %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-            </tr>
+            <tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>
             {% endfor %}
         </table>
     </section>
     {% endif %}
 
-    {% if cluster_table|default([]) %}
+    {% if cluster_table %}
     <section class="clustering-result">
-        <h3>Anggota Cluster</h3>
+        <h3>Anggota Setiap Cluster</h3>
         <table>
-            <tr>
-                <th>Cluster</th>
-                <th>Anggota</th>
-            </tr>
+            <tr><th>Cluster</th><th>Anggota</th></tr>
             {% for row in cluster_table %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-            </tr>
+            <tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td></tr>
             {% endfor %}
         </table>
     </section>
     {% endif %}
 
-    {% if results|default([]) %}
+    {% if results %}
     <section class="clustering-result">
         <h3>Hasil Clustering Data</h3>
         <table>
@@ -141,28 +129,48 @@
     </section>
     {% endif %}
 
-    {% if grafik_path|default('') %}
+    {% if grafik_paths %}
     <section class="clustering-result">
-        <h3>Grafik Produksi Total per Cluster (Top 20)</h3>
-        <img src="{{ '/' + grafik_path }}" alt="Grafik Produksi" style="max-width: 100%; border-radius: 8px;">
+        <h3>Grafik Total Produksi (Top 20)</h3>
+        <img src="{{ '/' + grafik_paths['Total_Produksi'] }}" alt="Grafik Produksi" style="max-width: 100%; border-radius: 8px;">
+    </section>
+
+    <section class="clustering-result">
+        <h3>Grafik Total Luas (Top 20)</h3>
+        <img src="{{ '/' + grafik_paths['Total_Luas'] }}" alt="Grafik Luas" style="max-width: 100%; border-radius: 8px;">
+    </section>
+
+    <section class="clustering-result">
+        <h3>Grafik Total Produktivitas (Top 20)</h3>
+        <img src="{{ '/' + grafik_paths['Total_Produktivitas'] }}" alt="Grafik Produktivitas" style="max-width: 100%; border-radius: 8px;">
     </section>
     {% endif %}
 
-    {% if trend_path|default('') %}
+    {% if trend_paths %}
     <section class="clustering-result">
         <h3>Grafik Tren Tahunan Produksi (Top 10)</h3>
-        <img src="{{ '/' + trend_path }}" alt="Tren Tahunan Produksi" style="max-width: 100%; border-radius: 8px;">
+        <img src="{{ '/' + trend_paths['Produksi'] }}" alt="Tren Produksi" style="max-width: 100%; border-radius: 8px;">
+    </section>
+
+    <section class="clustering-result">
+        <h3>Grafik Tren Tahunan Luas (Top 10)</h3>
+        <img src="{{ '/' + trend_paths['Luas'] }}" alt="Tren Luas" style="max-width: 100%; border-radius: 8px;">
+    </section>
+
+    <section class="clustering-result">
+        <h3>Grafik Tren Tahunan Produktivitas (Top 10)</h3>
+        <img src="{{ '/' + trend_paths['Produktivitas'] }}" alt="Tren Produktivitas" style="max-width: 100%; border-radius: 8px;">
     </section>
     {% endif %}
 
-    {% if dendro_path|default('') %}
+    {% if dendro_path %}
     <section class="clustering-result">
         <h3>Dendrogram Hierarchical Agglomerative Clustering</h3>
         <img src="{{ '/' + dendro_path }}" alt="Dendrogram" style="max-width: 100%; border-radius: 8px;">
     </section>
     {% endif %}
 
-    {% if peta_path|default('') %}
+    {% if peta_path %}
     <section class="clustering-result">
         <h3>Pemetaan Lokasi Produksi</h3>
         <iframe src="{{ '/' + peta_path }}" width="100%" height="500" style="border-radius: 8px; border: 1px solid #ccc;"></iframe>
@@ -199,7 +207,6 @@
 
     const clusterSlider = document.getElementById("n_clusters");
     const clusterValue = document.getElementById("cluster-value");
-
     clusterSlider?.addEventListener("input", () => {
         clusterValue.textContent = clusterSlider.value;
     });
