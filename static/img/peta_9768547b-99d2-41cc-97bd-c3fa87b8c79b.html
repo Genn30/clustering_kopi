@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_52cabd0f5c4fbd6a5c03b8db679629d0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey;"><strong>Legenda Cluster:</strong><br><i style="background:#1f77b4; width:10px; height:10px; display:inline-block;"></i> Cluster 0 - Rendah<br><i style="background:#8c564b; width:10px; height:10px; display:inline-block;"></i> Cluster 1 - Sedang<br><i style="background:#17becf; width:10px; height:10px; display:inline-block;"></i> Cluster 2 - Tinggi<br></div>
+    
+            <div class="folium-map" id="map_52cabd0f5c4fbd6a5c03b8db679629d0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_52cabd0f5c4fbd6a5c03b8db679629d0 = L.map(
+                "map_52cabd0f5c4fbd6a5c03b8db679629d0",
+                {
+                    center: [-2.0, 117.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fecaee48b6d629612e2cc42195b7543b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_fecaee48b6d629612e2cc42195b7543b.addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+            var circle_marker_bf13f8581f701cee8cfa67dbd44be26f = L.circleMarker(
+                [36.2048, 138.2529],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_f92663500fe9d197cd1e0c134ef035ee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9ca91b912ed1e6518372c49f85e701eb = $(`<div id="html_9ca91b912ed1e6518372c49f85e701eb" style="width: 100.0%; height: 100.0%;"><b>Japan </b><br>Cluster: 1<br>Kategori: Sedang<br>Total Berat: 205,739<br>Total Value: 565,631<br></div>`)[0];
+                popup_f92663500fe9d197cd1e0c134ef035ee.setContent(html_9ca91b912ed1e6518372c49f85e701eb);
+            
+        
+
+        circle_marker_bf13f8581f701cee8cfa67dbd44be26f.bindPopup(popup_f92663500fe9d197cd1e0c134ef035ee)
+        ;
+
+        
+    
+    
+            var circle_marker_fd3fe8d99f0b600b022d2c4697dd5832 = L.circleMarker(
+                [22.3193, 114.1694],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_46b531638cb9758858bf493c5a63f8b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8bc96ae613d47b4523f2bf04acc51ded = $(`<div id="html_8bc96ae613d47b4523f2bf04acc51ded" style="width: 100.0%; height: 100.0%;"><b>Hongkong</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 9,566<br>Total Value: 23,691<br></div>`)[0];
+                popup_46b531638cb9758858bf493c5a63f8b1.setContent(html_8bc96ae613d47b4523f2bf04acc51ded);
+            
+        
+
+        circle_marker_fd3fe8d99f0b600b022d2c4697dd5832.bindPopup(popup_46b531638cb9758858bf493c5a63f8b1)
+        ;
+
+        
+    
+    
+            var circle_marker_e0a5de289c7a97ce35d9f20be03db269 = L.circleMarker(
+                [35.9078, 127.7669],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_bac770ae932678a11851e2867c920e84 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_03e4c5fc1d1a9b22423a912aaa933b1d = $(`<div id="html_03e4c5fc1d1a9b22423a912aaa933b1d" style="width: 100.0%; height: 100.0%;"><b>Korea, Republic of</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 22,452<br>Total Value: 90,274<br></div>`)[0];
+                popup_bac770ae932678a11851e2867c920e84.setContent(html_03e4c5fc1d1a9b22423a912aaa933b1d);
+            
+        
+
+        circle_marker_e0a5de289c7a97ce35d9f20be03db269.bindPopup(popup_bac770ae932678a11851e2867c920e84)
+        ;
+
+        
+    
+    
+            var circle_marker_ef2f252e30f49de244f76e3c711cdc9b = L.circleMarker(
+                [23.6978, 120.9605],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_63461d958be9c71658100839cb07fe42 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_58a60e2919f5a8c28e3792cd922163ea = $(`<div id="html_58a60e2919f5a8c28e3792cd922163ea" style="width: 100.0%; height: 100.0%;"><b>Taiwan</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 36,521<br>Total Value: 132,275<br></div>`)[0];
+                popup_63461d958be9c71658100839cb07fe42.setContent(html_58a60e2919f5a8c28e3792cd922163ea);
+            
+        
+
+        circle_marker_ef2f252e30f49de244f76e3c711cdc9b.bindPopup(popup_63461d958be9c71658100839cb07fe42)
+        ;
+
+        
+    
+    
+            var circle_marker_9796cc34455fccd052d26af1fb53976a = L.circleMarker(
+                [35.8617, 104.1954],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_9dd63a95bcb2097b126ba14a87210650 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7190c23bfa3285ec57f88150506fa09c = $(`<div id="html_7190c23bfa3285ec57f88150506fa09c" style="width: 100.0%; height: 100.0%;"><b>China</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 59,234<br>Total Value: 164,640<br></div>`)[0];
+                popup_9dd63a95bcb2097b126ba14a87210650.setContent(html_7190c23bfa3285ec57f88150506fa09c);
+            
+        
+
+        circle_marker_9796cc34455fccd052d26af1fb53976a.bindPopup(popup_9dd63a95bcb2097b126ba14a87210650)
+        ;
+
+        
+    
+    
+            var circle_marker_2d55847a3525c00731095dcb0576f0c7 = L.circleMarker(
+                [22.1987, 113.5439],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_2927cbac7bb83c1a90cae45a384327d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bd9fb4e4e7ccaef9121aee82c0b19e96 = $(`<div id="html_bd9fb4e4e7ccaef9121aee82c0b19e96" style="width: 100.0%; height: 100.0%;"><b>Macau</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 496<br>Total Value: 1,376<br></div>`)[0];
+                popup_2927cbac7bb83c1a90cae45a384327d9.setContent(html_bd9fb4e4e7ccaef9121aee82c0b19e96);
+            
+        
+
+        circle_marker_2d55847a3525c00731095dcb0576f0c7.bindPopup(popup_2927cbac7bb83c1a90cae45a384327d9)
+        ;
+
+        
+    
+    
+            var circle_marker_ce2613b4100250d92e0b42b688198516 = L.circleMarker(
+                [15.87, 100.9925],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_adb0021b73fa0bc383b25a9bab8dc956 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2c64f7fa72d286011b59383afe87515b = $(`<div id="html_2c64f7fa72d286011b59383afe87515b" style="width: 100.0%; height: 100.0%;"><b>Thailand</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 34,301<br>Total Value: 74,522<br></div>`)[0];
+                popup_adb0021b73fa0bc383b25a9bab8dc956.setContent(html_2c64f7fa72d286011b59383afe87515b);
+            
+        
+
+        circle_marker_ce2613b4100250d92e0b42b688198516.bindPopup(popup_adb0021b73fa0bc383b25a9bab8dc956)
+        ;
+
+        
+    
+    
+            var circle_marker_bb69192d13f869f9df2a716e28c128f2 = L.circleMarker(
+                [1.3521, 103.8198],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_bb6df61b3430b8f3e1f7b46b669a0a06 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_602bce82a670a4b82bcf2479f2ad5b4c = $(`<div id="html_602bce82a670a4b82bcf2479f2ad5b4c" style="width: 100.0%; height: 100.0%;"><b>Singapore</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 53,737<br>Total Value: 147,237<br></div>`)[0];
+                popup_bb6df61b3430b8f3e1f7b46b669a0a06.setContent(html_602bce82a670a4b82bcf2479f2ad5b4c);
+            
+        
+
+        circle_marker_bb69192d13f869f9df2a716e28c128f2.bindPopup(popup_bb6df61b3430b8f3e1f7b46b669a0a06)
+        ;
+
+        
+    
+    
+            var circle_marker_6e16cd99ef90f72d94f7164a46e53dbd = L.circleMarker(
+                [13.41, 122.56],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_7974b4746b4a60472311832cfe3338e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8cf28dfd1fff25e043085f052e5f8912 = $(`<div id="html_8cf28dfd1fff25e043085f052e5f8912" style="width: 100.0%; height: 100.0%;"><b>Philippines</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 24,515<br>Total Value: 51,837<br></div>`)[0];
+                popup_7974b4746b4a60472311832cfe3338e1.setContent(html_8cf28dfd1fff25e043085f052e5f8912);
+            
+        
+
+        circle_marker_6e16cd99ef90f72d94f7164a46e53dbd.bindPopup(popup_7974b4746b4a60472311832cfe3338e1)
+        ;
+
+        
+    
+    
+            var circle_marker_61293e3535896f23e4a818460f8e49fa = L.circleMarker(
+                [4.2105, 101.9758],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_7bcbbaa07a78366da2ff4601e7ad8899 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8af13c2f7ab35b43fc00746da8f9a80 = $(`<div id="html_f8af13c2f7ab35b43fc00746da8f9a80" style="width: 100.0%; height: 100.0%;"><b>Malaysia</b><br>Cluster: 1<br>Kategori: Sedang<br>Total Berat: 285,031<br>Total Value: 528,206<br></div>`)[0];
+                popup_7bcbbaa07a78366da2ff4601e7ad8899.setContent(html_f8af13c2f7ab35b43fc00746da8f9a80);
+            
+        
+
+        circle_marker_61293e3535896f23e4a818460f8e49fa.bindPopup(popup_7bcbbaa07a78366da2ff4601e7ad8899)
+        ;
+
+        
+    
+    
+            var circle_marker_8999673512089907cd38b8d4ad3f9e11 = L.circleMarker(
+                [12.5657, 104.991],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_4c53ff2ffb8fc572abf4ee7ce4a120eb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_284a645f28cd6da63bc5c8b34ac98e3d = $(`<div id="html_284a645f28cd6da63bc5c8b34ac98e3d" style="width: 100.0%; height: 100.0%;"><b>Cambodia</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 127<br>Total Value: 823<br></div>`)[0];
+                popup_4c53ff2ffb8fc572abf4ee7ce4a120eb.setContent(html_284a645f28cd6da63bc5c8b34ac98e3d);
+            
+        
+
+        circle_marker_8999673512089907cd38b8d4ad3f9e11.bindPopup(popup_4c53ff2ffb8fc572abf4ee7ce4a120eb)
+        ;
+
+        
+    
+    
+            var circle_marker_1fd6e2352f26ff3ab56462367328381a = L.circleMarker(
+                [4.5353, 114.7277],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_a9ac85a8d895ac2821df7910637fbd50 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6fe5e23b0d0a1df684c686d0743dc738 = $(`<div id="html_6fe5e23b0d0a1df684c686d0743dc738" style="width: 100.0%; height: 100.0%;"><b>Brunei</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 359<br>Total Value: 1,240<br></div>`)[0];
+                popup_a9ac85a8d895ac2821df7910637fbd50.setContent(html_6fe5e23b0d0a1df684c686d0743dc738);
+            
+        
+
+        circle_marker_1fd6e2352f26ff3ab56462367328381a.bindPopup(popup_a9ac85a8d895ac2821df7910637fbd50)
+        ;
+
+        
+    
+    
+            var circle_marker_d112f1da797ea9967293eb31f4a05a63 = L.circleMarker(
+                [14.0583, 108.2772],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_e5fa1358d47c6031137b1182ff283a06 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_79696703440ecf8cf3c2c30214e511d8 = $(`<div id="html_79696703440ecf8cf3c2c30214e511d8" style="width: 100.0%; height: 100.0%;"><b>Vietnam</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 57,385<br>Total Value: 103,442<br></div>`)[0];
+                popup_e5fa1358d47c6031137b1182ff283a06.setContent(html_79696703440ecf8cf3c2c30214e511d8);
+            
+        
+
+        circle_marker_d112f1da797ea9967293eb31f4a05a63.bindPopup(popup_e5fa1358d47c6031137b1182ff283a06)
+        ;
+
+        
+    
+    
+            var circle_marker_1c4e57e51122b4907e16661d2de24296 = L.circleMarker(
+                [20.5937, 78.9629],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_68a27b3e57c8ab03750b7f88991b9433 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_57054300c4f509f7154f19ab5d3e313c = $(`<div id="html_57054300c4f509f7154f19ab5d3e313c" style="width: 100.0%; height: 100.0%;"><b>India</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 144,197<br>Total Value: 230,968<br></div>`)[0];
+                popup_68a27b3e57c8ab03750b7f88991b9433.setContent(html_57054300c4f509f7154f19ab5d3e313c);
+            
+        
+
+        circle_marker_1c4e57e51122b4907e16661d2de24296.bindPopup(popup_68a27b3e57c8ab03750b7f88991b9433)
+        ;
+
+        
+    
+    
+            var circle_marker_601d80e2c58ed09b7c8c9e4f8f887fd5 = L.circleMarker(
+                [30.3753, 69.3451],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_3761e7e55d5145a930bd58da64ae1155 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_456991316e9ffb0746fa0fbaf5bf1461 = $(`<div id="html_456991316e9ffb0746fa0fbaf5bf1461" style="width: 100.0%; height: 100.0%;"><b>Pakistan</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 25<br>Total Value: 102<br></div>`)[0];
+                popup_3761e7e55d5145a930bd58da64ae1155.setContent(html_456991316e9ffb0746fa0fbaf5bf1461);
+            
+        
+
+        circle_marker_601d80e2c58ed09b7c8c9e4f8f887fd5.bindPopup(popup_3761e7e55d5145a930bd58da64ae1155)
+        ;
+
+        
+    
+    
+            var circle_marker_cfe24f3592fa34931f9cdddb35e9c4ae = L.circleMarker(
+                [32.4279, 53.688],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_6921e0c8750be4c31ccc59bf23c3cf4a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3ac5c4fd95db9b04abe1b320e547fe76 = $(`<div id="html_3ac5c4fd95db9b04abe1b320e547fe76" style="width: 100.0%; height: 100.0%;"><b>Iran</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 10,131<br>Total Value: 23,223<br></div>`)[0];
+                popup_6921e0c8750be4c31ccc59bf23c3cf4a.setContent(html_3ac5c4fd95db9b04abe1b320e547fe76);
+            
+        
+
+        circle_marker_cfe24f3592fa34931f9cdddb35e9c4ae.bindPopup(popup_6921e0c8750be4c31ccc59bf23c3cf4a)
+        ;
+
+        
+    
+    
+            var circle_marker_56ffb30c8ea06cf847cbd2b4ff811e23 = L.circleMarker(
+                [23.8859, 45.0792],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_874c68ab9a4924e47b9bb5d8dea0bc58 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5e8156549785bf2fd9cdfd50fb8790a5 = $(`<div id="html_5e8156549785bf2fd9cdfd50fb8790a5" style="width: 100.0%; height: 100.0%;"><b>Saudi Arabia</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 2,055<br>Total Value: 11,142<br></div>`)[0];
+                popup_874c68ab9a4924e47b9bb5d8dea0bc58.setContent(html_5e8156549785bf2fd9cdfd50fb8790a5);
+            
+        
+
+        circle_marker_56ffb30c8ea06cf847cbd2b4ff811e23.bindPopup(popup_874c68ab9a4924e47b9bb5d8dea0bc58)
+        ;
+
+        
+    
+    
+            var circle_marker_4bf5b620f74a81a4de19b9952e9fafbc = L.circleMarker(
+                [31.0461, 34.8516],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_750a95c26bb22ff46a708e6346627ab0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df9d14653877b5a94728dc04395dd4d8 = $(`<div id="html_df9d14653877b5a94728dc04395dd4d8" style="width: 100.0%; height: 100.0%;"><b>Israel</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 1,054<br>Total Value: 4,038<br></div>`)[0];
+                popup_750a95c26bb22ff46a708e6346627ab0.setContent(html_df9d14653877b5a94728dc04395dd4d8);
+            
+        
+
+        circle_marker_4bf5b620f74a81a4de19b9952e9fafbc.bindPopup(popup_750a95c26bb22ff46a708e6346627ab0)
+        ;
+
+        
+    
+    
+            var circle_marker_7a9fe2e23c01005e817d29fc60f63c98 = L.circleMarker(
+                [38.9637, 35.2433],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_decef9c7b044362d0d389154b6fa6e74 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8530e62eaa62e89e416e8d8f460d5d3 = $(`<div id="html_c8530e62eaa62e89e416e8d8f460d5d3" style="width: 100.0%; height: 100.0%;"><b>Turkey</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 2,369<br>Total Value: 5,440<br></div>`)[0];
+                popup_decef9c7b044362d0d389154b6fa6e74.setContent(html_c8530e62eaa62e89e416e8d8f460d5d3);
+            
+        
+
+        circle_marker_7a9fe2e23c01005e817d29fc60f63c98.bindPopup(popup_decef9c7b044362d0d389154b6fa6e74)
+        ;
+
+        
+    
+    
+            var circle_marker_d48c6d942f1cd2f783eb2c5124c25122 = L.circleMarker(
+                [23.4241, 53.8478],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_7375506586f6057ff04327003e3aecba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b21306150d326236aeab28373a4c8d4 = $(`<div id="html_7b21306150d326236aeab28373a4c8d4" style="width: 100.0%; height: 100.0%;"><b>United Arab Emirates</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 15,953<br>Total Value: 41,620<br></div>`)[0];
+                popup_7375506586f6057ff04327003e3aecba.setContent(html_7b21306150d326236aeab28373a4c8d4);
+            
+        
+
+        circle_marker_d48c6d942f1cd2f783eb2c5124c25122.bindPopup(popup_7375506586f6057ff04327003e3aecba)
+        ;
+
+        
+    
+    
+            var circle_marker_1010fb2d5d52e7b81698f708916a7049 = L.circleMarker(
+                [21.5126, 55.9233],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_50d186ae5df630022096ee58b653fc85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ec47df78032450ff5182e6822ee29f87 = $(`<div id="html_ec47df78032450ff5182e6822ee29f87" style="width: 100.0%; height: 100.0%;"><b>Oman</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 363<br>Total Value: 1,038<br></div>`)[0];
+                popup_50d186ae5df630022096ee58b653fc85.setContent(html_ec47df78032450ff5182e6822ee29f87);
+            
+        
+
+        circle_marker_1010fb2d5d52e7b81698f708916a7049.bindPopup(popup_50d186ae5df630022096ee58b653fc85)
+        ;
+
+        
+    
+    
+            var circle_marker_afb2c7c3f32b35ab919009450e63d306 = L.circleMarker(
+                [-8.8742, 125.7275],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_a2dcd1831af9a614ac08d9f5c404e6c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e54ce4cc3c7cf4cb14e29fc86c0d0e09 = $(`<div id="html_e54ce4cc3c7cf4cb14e29fc86c0d0e09" style="width: 100.0%; height: 100.0%;"><b>East Timor</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 4,927<br>Total Value: 14,564<br></div>`)[0];
+                popup_a2dcd1831af9a614ac08d9f5c404e6c8.setContent(html_e54ce4cc3c7cf4cb14e29fc86c0d0e09);
+            
+        
+
+        circle_marker_afb2c7c3f32b35ab919009450e63d306.bindPopup(popup_a2dcd1831af9a614ac08d9f5c404e6c8)
+        ;
+
+        
+    
+    
+            var circle_marker_68538e7bdbcb362304275fff32d1b67b = L.circleMarker(
+                [26.8206, 30.8025],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_81c1ae2691fe040426f779d392ac9665 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b9900fe243d733adaa66f879d5ea90f4 = $(`<div id="html_b9900fe243d733adaa66f879d5ea90f4" style="width: 100.0%; height: 100.0%;"><b>Egypt</b><br>Cluster: 1<br>Kategori: Sedang<br>Total Berat: 259,282<br>Total Value: 520,292<br></div>`)[0];
+                popup_81c1ae2691fe040426f779d392ac9665.setContent(html_b9900fe243d733adaa66f879d5ea90f4);
+            
+        
+
+        circle_marker_68538e7bdbcb362304275fff32d1b67b.bindPopup(popup_81c1ae2691fe040426f779d392ac9665)
+        ;
+
+        
+    
+    
+            var circle_marker_874f5e555bec07969ce1d84607805aac = L.circleMarker(
+                [31.7917, -7.0926],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_1c03c6ddf267053fe5a1376267593857 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e843179c3e8f388f15df4fe6051c6646 = $(`<div id="html_e843179c3e8f388f15df4fe6051c6646" style="width: 100.0%; height: 100.0%;"><b>Morocco</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 79,220<br>Total Value: 150,959<br></div>`)[0];
+                popup_1c03c6ddf267053fe5a1376267593857.setContent(html_e843179c3e8f388f15df4fe6051c6646);
+            
+        
+
+        circle_marker_874f5e555bec07969ce1d84607805aac.bindPopup(popup_1c03c6ddf267053fe5a1376267593857)
+        ;
+
+        
+    
+    
+            var circle_marker_bbb451d5ed86d4716b485f7f859ace17 = L.circleMarker(
+                [28.0339, 1.6596],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_e5826596fcf89ec3ca625dffd4058f98 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c50ea2c7bdb30378c2664decf4f1ddd6 = $(`<div id="html_c50ea2c7bdb30378c2664decf4f1ddd6" style="width: 100.0%; height: 100.0%;"><b>Algeria</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 67,060<br>Total Value: 127,332<br></div>`)[0];
+                popup_e5826596fcf89ec3ca625dffd4058f98.setContent(html_c50ea2c7bdb30378c2664decf4f1ddd6);
+            
+        
+
+        circle_marker_bbb451d5ed86d4716b485f7f859ace17.bindPopup(popup_e5826596fcf89ec3ca625dffd4058f98)
+        ;
+
+        
+    
+    
+            var circle_marker_49666763a4629bbca93d7f92ffb5de36 = L.circleMarker(
+                [-30.5595, 22.9375],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_6d37d46ab04792e0f0c2b373d5d22483 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ae85d28b6e08ad9e50798f379fc494ed = $(`<div id="html_ae85d28b6e08ad9e50798f379fc494ed" style="width: 100.0%; height: 100.0%;"><b>South Africa</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 12,671<br>Total Value: 29,648<br></div>`)[0];
+                popup_6d37d46ab04792e0f0c2b373d5d22483.setContent(html_ae85d28b6e08ad9e50798f379fc494ed);
+            
+        
+
+        circle_marker_49666763a4629bbca93d7f92ffb5de36.bindPopup(popup_6d37d46ab04792e0f0c2b373d5d22483)
+        ;
+
+        
+    
+    
+            var circle_marker_7ffcbb680cccb7dd8e975ad1462a22eb = L.circleMarker(
+                [-25.2744, 133.7751],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_fba8c8be7c28d66c018adb51147eb7b3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_79f789ffbd269eea3b6939b346cb5c79 = $(`<div id="html_79f789ffbd269eea3b6939b346cb5c79" style="width: 100.0%; height: 100.0%;"><b>Australia</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 30,920<br>Total Value: 101,642<br></div>`)[0];
+                popup_fba8c8be7c28d66c018adb51147eb7b3.setContent(html_79f789ffbd269eea3b6939b346cb5c79);
+            
+        
+
+        circle_marker_7ffcbb680cccb7dd8e975ad1462a22eb.bindPopup(popup_fba8c8be7c28d66c018adb51147eb7b3)
+        ;
+
+        
+    
+    
+            var circle_marker_548075e78dfd7f7efca60a2da37d4932 = L.circleMarker(
+                [-40.9006, 174.886],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_71e70c8cb7aa4ad22b78e981ef205b4a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85f7a0eb605461401b4d73dc245653b5 = $(`<div id="html_85f7a0eb605461401b4d73dc245653b5" style="width: 100.0%; height: 100.0%;"><b>New Zealand</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 3,373<br>Total Value: 18,295<br></div>`)[0];
+                popup_71e70c8cb7aa4ad22b78e981ef205b4a.setContent(html_85f7a0eb605461401b4d73dc245653b5);
+            
+        
+
+        circle_marker_548075e78dfd7f7efca60a2da37d4932.bindPopup(popup_71e70c8cb7aa4ad22b78e981ef205b4a)
+        ;
+
+        
+    
+    
+            var circle_marker_abfaaa40b01716e61b33cefe1af1f38f = L.circleMarker(
+                [37.0902, -95.7129],
+                {"bubblingMouseEvents": true, "color": "#17becf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#17becf", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_254a13dc68c0bc288b5f93a91dfa5844 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cd247a2ee46290a382ebb73156c29e84 = $(`<div id="html_cd247a2ee46290a382ebb73156c29e84" style="width: 100.0%; height: 100.0%;"><b>United States</b><br>Cluster: 2<br>Kategori: Tinggi<br>Total Berat: 446,083<br>Total Value: 1,916,485<br></div>`)[0];
+                popup_254a13dc68c0bc288b5f93a91dfa5844.setContent(html_cd247a2ee46290a382ebb73156c29e84);
+            
+        
+
+        circle_marker_abfaaa40b01716e61b33cefe1af1f38f.bindPopup(popup_254a13dc68c0bc288b5f93a91dfa5844)
+        ;
+
+        
+    
+    
+            var circle_marker_4236b96d0afb86bb3496f3210575129c = L.circleMarker(
+                [56.1304, -106.3468],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_388561091fb7fa85b33d4d2b2e07f83c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_441832323ce8dd6b3c7288ddb08b5233 = $(`<div id="html_441832323ce8dd6b3c7288ddb08b5233" style="width: 100.0%; height: 100.0%;"><b>Canada</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 28,745<br>Total Value: 157,374<br></div>`)[0];
+                popup_388561091fb7fa85b33d4d2b2e07f83c.setContent(html_441832323ce8dd6b3c7288ddb08b5233);
+            
+        
+
+        circle_marker_4236b96d0afb86bb3496f3210575129c.bindPopup(popup_388561091fb7fa85b33d4d2b2e07f83c)
+        ;
+
+        
+    
+    
+            var circle_marker_341167c8b5e2017d480bc61ad92a80a2 = L.circleMarker(
+                [23.6345, -102.5528],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_0a49710e863ba657d52df5f66a9e7387 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_95ab309012275a7839dbb94b78ada8c5 = $(`<div id="html_95ab309012275a7839dbb94b78ada8c5" style="width: 100.0%; height: 100.0%;"><b>Mexico</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 5,920<br>Total Value: 14,582<br></div>`)[0];
+                popup_0a49710e863ba657d52df5f66a9e7387.setContent(html_95ab309012275a7839dbb94b78ada8c5);
+            
+        
+
+        circle_marker_341167c8b5e2017d480bc61ad92a80a2.bindPopup(popup_0a49710e863ba657d52df5f66a9e7387)
+        ;
+
+        
+    
+    
+            var circle_marker_19c4d5db8945b534da85e04bbadad63d = L.circleMarker(
+                [55.3781, -3.436],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_7473c43d0b53b7bf7603a496bf256751 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1166e85448dcf5627f05e1df870af3ff = $(`<div id="html_1166e85448dcf5627f05e1df870af3ff" style="width: 100.0%; height: 100.0%;"><b>United Kingdom</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 125,223<br>Total Value: 285,310<br></div>`)[0];
+                popup_7473c43d0b53b7bf7603a496bf256751.setContent(html_1166e85448dcf5627f05e1df870af3ff);
+            
+        
+
+        circle_marker_19c4d5db8945b534da85e04bbadad63d.bindPopup(popup_7473c43d0b53b7bf7603a496bf256751)
+        ;
+
+        
+    
+    
+            var circle_marker_a4f85ca3b308cccd6945b03c354d2270 = L.circleMarker(
+                [52.1326, 5.2913],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_114ccd0c3643199141cf7acfa4725369 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d4ef2548ec19c4ed1d0a60bb96355263 = $(`<div id="html_d4ef2548ec19c4ed1d0a60bb96355263" style="width: 100.0%; height: 100.0%;"><b>Netherlands</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 23,707<br>Total Value: 75,213<br></div>`)[0];
+                popup_114ccd0c3643199141cf7acfa4725369.setContent(html_d4ef2548ec19c4ed1d0a60bb96355263);
+            
+        
+
+        circle_marker_a4f85ca3b308cccd6945b03c354d2270.bindPopup(popup_114ccd0c3643199141cf7acfa4725369)
+        ;
+
+        
+    
+    
+            var circle_marker_2d1c6ca7367d6417461cd5868fde37a3 = L.circleMarker(
+                [46.2276, 2.2137],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_7129bcfd71ab68b42efe80d47ca5f6d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3cf0597bb8af5ca86c1b58ef7aa0d164 = $(`<div id="html_3cf0597bb8af5ca86c1b58ef7aa0d164" style="width: 100.0%; height: 100.0%;"><b>France</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 25,176<br>Total Value: 51,841<br></div>`)[0];
+                popup_7129bcfd71ab68b42efe80d47ca5f6d6.setContent(html_3cf0597bb8af5ca86c1b58ef7aa0d164);
+            
+        
+
+        circle_marker_2d1c6ca7367d6417461cd5868fde37a3.bindPopup(popup_7129bcfd71ab68b42efe80d47ca5f6d6)
+        ;
+
+        
+    
+    
+            var circle_marker_cdc6fc000ec26aa864a3fc5d72d32137 = L.circleMarker(
+                [51.1657, 10.4515],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_f398bec9793ae5feeb0ce0afb7a1b78b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7fba65c00c6d38d705303c85e16f4843 = $(`<div id="html_7fba65c00c6d38d705303c85e16f4843" style="width: 100.0%; height: 100.0%;"><b>Germany, FED.REP.OF</b><br>Cluster: 1<br>Kategori: Sedang<br>Total Berat: 198,786<br>Total Value: 473,410<br></div>`)[0];
+                popup_f398bec9793ae5feeb0ce0afb7a1b78b.setContent(html_7fba65c00c6d38d705303c85e16f4843);
+            
+        
+
+        circle_marker_cdc6fc000ec26aa864a3fc5d72d32137.bindPopup(popup_f398bec9793ae5feeb0ce0afb7a1b78b)
+        ;
+
+        
+    
+    
+            var circle_marker_d6e1dd775e7fcc329e6a04dfc85a9a06 = L.circleMarker(
+                [50.5039, 4.4699],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_c67e53355973e1abb18fd321f7fa2109 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a67cf241519a24ce341b497c7244edec = $(`<div id="html_a67cf241519a24ce341b497c7244edec" style="width: 100.0%; height: 100.0%;"><b>Belgium</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 102,429<br>Total Value: 296,090<br></div>`)[0];
+                popup_c67e53355973e1abb18fd321f7fa2109.setContent(html_a67cf241519a24ce341b497c7244edec);
+            
+        
+
+        circle_marker_d6e1dd775e7fcc329e6a04dfc85a9a06.bindPopup(popup_c67e53355973e1abb18fd321f7fa2109)
+        ;
+
+        
+    
+    
+            var circle_marker_1ac6444d6476654f732b4f2f5fcfad10 = L.circleMarker(
+                [46.8182, 8.2275],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_405e9ef3d87d706211a5fa80a0eae378 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0138712881b8da106ccffa81ce9779ed = $(`<div id="html_0138712881b8da106ccffa81ce9779ed" style="width: 100.0%; height: 100.0%;"><b>Switzerland</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 159<br>Total Value: 698<br></div>`)[0];
+                popup_405e9ef3d87d706211a5fa80a0eae378.setContent(html_0138712881b8da106ccffa81ce9779ed);
+            
+        
+
+        circle_marker_1ac6444d6476654f732b4f2f5fcfad10.bindPopup(popup_405e9ef3d87d706211a5fa80a0eae378)
+        ;
+
+        
+    
+    
+            var circle_marker_564aaeff2b24fb6c9ecb6e9ef581942c = L.circleMarker(
+                [56.2639, 9.5018],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_ae9edadd5e13d2a1c00823b897478e5d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_78c547b5f82a74f0de7e8e0229f6c2b3 = $(`<div id="html_78c547b5f82a74f0de7e8e0229f6c2b3" style="width: 100.0%; height: 100.0%;"><b>Denmark</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 614<br>Total Value: 2,585<br></div>`)[0];
+                popup_ae9edadd5e13d2a1c00823b897478e5d.setContent(html_78c547b5f82a74f0de7e8e0229f6c2b3);
+            
+        
+
+        circle_marker_564aaeff2b24fb6c9ecb6e9ef581942c.bindPopup(popup_ae9edadd5e13d2a1c00823b897478e5d)
+        ;
+
+        
+    
+    
+            var circle_marker_59b1c2f8f2cc08b7dec8aa18749720b6 = L.circleMarker(
+                [60.472, 8.4689],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_796cf12c86b6373b6c7d21fa234fccd6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e03672ead1f75865e4021f6e56dac0ea = $(`<div id="html_e03672ead1f75865e4021f6e56dac0ea" style="width: 100.0%; height: 100.0%;"><b>Norway</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 1,196<br>Total Value: 5,879<br></div>`)[0];
+                popup_796cf12c86b6373b6c7d21fa234fccd6.setContent(html_e03672ead1f75865e4021f6e56dac0ea);
+            
+        
+
+        circle_marker_59b1c2f8f2cc08b7dec8aa18749720b6.bindPopup(popup_796cf12c86b6373b6c7d21fa234fccd6)
+        ;
+
+        
+    
+    
+            var circle_marker_0aba512d53deef3e14d3de01aab83607 = L.circleMarker(
+                [60.1282, 18.6435],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_86368140bd62d19aad289f6a17b34dca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fd7ef87687db24ae4e5689b7320b7f2e = $(`<div id="html_fd7ef87687db24ae4e5689b7320b7f2e" style="width: 100.0%; height: 100.0%;"><b>Sweden</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 3,705<br>Total Value: 10,554<br></div>`)[0];
+                popup_86368140bd62d19aad289f6a17b34dca.setContent(html_fd7ef87687db24ae4e5689b7320b7f2e);
+            
+        
+
+        circle_marker_0aba512d53deef3e14d3de01aab83607.bindPopup(popup_86368140bd62d19aad289f6a17b34dca)
+        ;
+
+        
+    
+    
+            var circle_marker_ce8ed0e811a169bb27318811b5e3ef5c = L.circleMarker(
+                [53.4129, -8.2439],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_15a5a2df3802b6d36343ef486b2ef43c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db777c81b1ca6d32ccf65add5e952f02 = $(`<div id="html_db777c81b1ca6d32ccf65add5e952f02" style="width: 100.0%; height: 100.0%;"><b>Ireland</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 2,642<br>Total Value: 12,732<br></div>`)[0];
+                popup_15a5a2df3802b6d36343ef486b2ef43c.setContent(html_db777c81b1ca6d32ccf65add5e952f02);
+            
+        
+
+        circle_marker_ce8ed0e811a169bb27318811b5e3ef5c.bindPopup(popup_15a5a2df3802b6d36343ef486b2ef43c)
+        ;
+
+        
+    
+    
+            var circle_marker_f956764dd08ab05ecbcc502d4a9a4670 = L.circleMarker(
+                [41.8719, 12.5674],
+                {"bubblingMouseEvents": true, "color": "#8c564b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8c564b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_53ae1e1e2083456e90493bd8349e820e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c84c9cf555dbd41171c93490fc93a448 = $(`<div id="html_c84c9cf555dbd41171c93490fc93a448" style="width: 100.0%; height: 100.0%;"><b>Italy</b><br>Cluster: 1<br>Kategori: Sedang<br>Total Berat: 229,609<br>Total Value: 436,867<br></div>`)[0];
+                popup_53ae1e1e2083456e90493bd8349e820e.setContent(html_c84c9cf555dbd41171c93490fc93a448);
+            
+        
+
+        circle_marker_f956764dd08ab05ecbcc502d4a9a4670.bindPopup(popup_53ae1e1e2083456e90493bd8349e820e)
+        ;
+
+        
+    
+    
+            var circle_marker_4bfbf625cf8b60d8600a06a9a2642933 = L.circleMarker(
+                [40.4637, -3.7492],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_c4b13dc8c0e7dc77780a41525ba1d627 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_778f80c92409fdca76b8f8d52c1c0d7c = $(`<div id="html_778f80c92409fdca76b8f8d52c1c0d7c" style="width: 100.0%; height: 100.0%;"><b>Spain</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 76,455<br>Total Value: 137,569<br></div>`)[0];
+                popup_c4b13dc8c0e7dc77780a41525ba1d627.setContent(html_778f80c92409fdca76b8f8d52c1c0d7c);
+            
+        
+
+        circle_marker_4bfbf625cf8b60d8600a06a9a2642933.bindPopup(popup_c4b13dc8c0e7dc77780a41525ba1d627)
+        ;
+
+        
+    
+    
+            var circle_marker_459ea2c1f0c74144106397cd0a45227b = L.circleMarker(
+                [39.3999, -8.2245],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_29dc18ed1b57bfbde11d09dc8d15395b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e2e84f488352e5aa756408321a77c732 = $(`<div id="html_e2e84f488352e5aa756408321a77c732" style="width: 100.0%; height: 100.0%;"><b>Portugal</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 13,192<br>Total Value: 26,463<br></div>`)[0];
+                popup_29dc18ed1b57bfbde11d09dc8d15395b.setContent(html_e2e84f488352e5aa756408321a77c732);
+            
+        
+
+        circle_marker_459ea2c1f0c74144106397cd0a45227b.bindPopup(popup_29dc18ed1b57bfbde11d09dc8d15395b)
+        ;
+
+        
+    
+    
+            var circle_marker_66bb73405a1171321e674a201750cf43 = L.circleMarker(
+                [39.0742, 21.8243],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_19cd4b4b450cd94164462e8b06b9607c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_baf61d2c8ea6bb7c9ae8dd5176d416c2 = $(`<div id="html_baf61d2c8ea6bb7c9ae8dd5176d416c2" style="width: 100.0%; height: 100.0%;"><b>Greece</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 17,839<br>Total Value: 33,869<br></div>`)[0];
+                popup_19cd4b4b450cd94164462e8b06b9607c.setContent(html_baf61d2c8ea6bb7c9ae8dd5176d416c2);
+            
+        
+
+        circle_marker_66bb73405a1171321e674a201750cf43.bindPopup(popup_19cd4b4b450cd94164462e8b06b9607c)
+        ;
+
+        
+    
+    
+            var circle_marker_04aee7965e5362664b95cabf4d1ad7e7 = L.circleMarker(
+                [51.9194, 19.1451],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_95eff1d6053f40c2cb1c1cbaebb62f63 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b35cb918fe728543cad373174c29767c = $(`<div id="html_b35cb918fe728543cad373174c29767c" style="width: 100.0%; height: 100.0%;"><b>Poland</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 2,845<br>Total Value: 5,422<br></div>`)[0];
+                popup_95eff1d6053f40c2cb1c1cbaebb62f63.setContent(html_b35cb918fe728543cad373174c29767c);
+            
+        
+
+        circle_marker_04aee7965e5362664b95cabf4d1ad7e7.bindPopup(popup_95eff1d6053f40c2cb1c1cbaebb62f63)
+        ;
+
+        
+    
+    
+            var circle_marker_63366ea42eae6708313011f22961274d = L.circleMarker(
+                [45.9432, 24.9668],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_0cf31b66559ccad8c855c408c485c24e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ed1400fbf32c6c49593675cf4312fb8c = $(`<div id="html_ed1400fbf32c6c49593675cf4312fb8c" style="width: 100.0%; height: 100.0%;"><b>Romania</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 5,440<br>Total Value: 9,989<br></div>`)[0];
+                popup_0cf31b66559ccad8c855c408c485c24e.setContent(html_ed1400fbf32c6c49593675cf4312fb8c);
+            
+        
+
+        circle_marker_63366ea42eae6708313011f22961274d.bindPopup(popup_0cf31b66559ccad8c855c408c485c24e)
+        ;
+
+        
+    
+    
+            var circle_marker_91e7fc5eb70537bc5debcf9c95dc4181 = L.circleMarker(
+                [42.7339, 25.4858],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_2bbf76ac84c96b81f0b5cb10146a09cd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24ddf0797c1314c251ad5fc474b39c20 = $(`<div id="html_24ddf0797c1314c251ad5fc474b39c20" style="width: 100.0%; height: 100.0%;"><b>Bulgaria</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 11,417<br>Total Value: 21,662<br></div>`)[0];
+                popup_2bbf76ac84c96b81f0b5cb10146a09cd.setContent(html_24ddf0797c1314c251ad5fc474b39c20);
+            
+        
+
+        circle_marker_91e7fc5eb70537bc5debcf9c95dc4181.bindPopup(popup_2bbf76ac84c96b81f0b5cb10146a09cd)
+        ;
+
+        
+    
+    
+            var circle_marker_18547ac7e9653739adef3b5684df27c5 = L.circleMarker(
+                [40.0691, 45.0382],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_0a9699697fb4c5b8c6d24c42cb75950d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1b6f144b620f968c8faa543faf642c18 = $(`<div id="html_1b6f144b620f968c8faa543faf642c18" style="width: 100.0%; height: 100.0%;"><b>Armenia</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 7,737<br>Total Value: 17,122<br></div>`)[0];
+                popup_0a9699697fb4c5b8c6d24c42cb75950d.setContent(html_1b6f144b620f968c8faa543faf642c18);
+            
+        
+
+        circle_marker_18547ac7e9653739adef3b5684df27c5.bindPopup(popup_0a9699697fb4c5b8c6d24c42cb75950d)
+        ;
+
+        
+    
+    
+            var circle_marker_18877ac298500df20f38d07acfee05cc = L.circleMarker(
+                [48.3794, 31.1656],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_974cb1189295a63cd866b21692c7ce39 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e76acafa80838143eaf55157d8750701 = $(`<div id="html_e76acafa80838143eaf55157d8750701" style="width: 100.0%; height: 100.0%;"><b>Ukraine</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 1,260<br>Total Value: 2,729<br></div>`)[0];
+                popup_974cb1189295a63cd866b21692c7ce39.setContent(html_e76acafa80838143eaf55157d8750701);
+            
+        
+
+        circle_marker_18877ac298500df20f38d07acfee05cc.bindPopup(popup_974cb1189295a63cd866b21692c7ce39)
+        ;
+
+        
+    
+    
+            var circle_marker_024b5a1ff61a293bada7d312971e38fa = L.circleMarker(
+                [42.3154, 43.3569],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_891df832ad939fca330285ba8e39dbee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1600afc20fa93b7f593dae3d8418c319 = $(`<div id="html_1600afc20fa93b7f593dae3d8418c319" style="width: 100.0%; height: 100.0%;"><b>Georgia</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 98,658<br>Total Value: 188,041<br></div>`)[0];
+                popup_891df832ad939fca330285ba8e39dbee.setContent(html_1600afc20fa93b7f593dae3d8418c319);
+            
+        
+
+        circle_marker_024b5a1ff61a293bada7d312971e38fa.bindPopup(popup_891df832ad939fca330285ba8e39dbee)
+        ;
+
+        
+    
+    
+            var circle_marker_31e8b69d09e370c61aecdf7408f90427 = L.circleMarker(
+                [49.8175, 15.473],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_fb6086309e10613b56e90602cc2786f6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8a6fdfe0ab7b5d14e91fd18ed432710 = $(`<div id="html_f8a6fdfe0ab7b5d14e91fd18ed432710" style="width: 100.0%; height: 100.0%;"><b>Czech Republic</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 1,109<br>Total Value: 2,309<br></div>`)[0];
+                popup_fb6086309e10613b56e90602cc2786f6.setContent(html_f8a6fdfe0ab7b5d14e91fd18ed432710);
+            
+        
+
+        circle_marker_31e8b69d09e370c61aecdf7408f90427.bindPopup(popup_fb6086309e10613b56e90602cc2786f6)
+        ;
+
+        
+    
+    
+            var circle_marker_c4f3f1cd210eab382dce43985c4792aa = L.circleMarker(
+                [61.524, 105.3188],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_52cabd0f5c4fbd6a5c03b8db679629d0);
+        
+    
+        var popup_799391e0e61d4e0b2274cd8dd907fe76 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0b42d30131a26fc48c6e21d4d079f7da = $(`<div id="html_0b42d30131a26fc48c6e21d4d079f7da" style="width: 100.0%; height: 100.0%;"><b>Russia Federation</b><br>Cluster: 0<br>Kategori: Rendah<br>Total Berat: 135,809<br>Total Value: 252,504<br></div>`)[0];
+                popup_799391e0e61d4e0b2274cd8dd907fe76.setContent(html_0b42d30131a26fc48c6e21d4d079f7da);
+            
+        
+
+        circle_marker_c4f3f1cd210eab382dce43985c4792aa.bindPopup(popup_799391e0e61d4e0b2274cd8dd907fe76)
+        ;
+
+        
+    
+</script>
+</html>

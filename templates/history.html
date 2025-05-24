@@ -80,37 +80,53 @@
                             <td>{{ item.time_exec }}</td>
 
                             <td>
-                                {% if item.grafik_path %}
-                                    {% if item.type == 'Produksi' %}
-                                        <div>
-                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Produksi_') }}" target="_blank" class="btn mini">Produksi</a>
-                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Luas_') }}" target="_blank" class="btn mini">Luas</a>
-                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Produktivitas_') }}" target="_blank" class="btn mini">Produktivitas</a>
-                                        </div>
-                                    {% else %}
-                                        <div>
-                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Berat_') }}" target="_blank" class="btn mini">Berat</a>
-                                            <a href="/{{ item.grafik_path.replace('grafik_', 'grafik_Value_') }}" target="_blank" class="btn mini">Value</a>
-                                        </div>
-                                    {% endif %}
-                                {% else %}-{% endif %}
+                                {% if item.type == 'Produksi' %}
+                                    <div>
+                                        {% if item.grafik_dict.Produksi %}
+                                        <a href="{{ item.grafik_dict.Produksi }}" target="_blank" class="btn mini">Produksi</a>
+                                        {% endif %}
+                                        {% if item.grafik_dict.Luas %}
+                                        <a href="{{ item.grafik_dict.Luas }}" target="_blank" class="btn mini">Luas</a>
+                                        {% endif %}
+                                        {% if item.grafik_dict.Produktivitas %}
+                                        <a href="{{ item.grafik_dict.Produktivitas }}" target="_blank" class="btn mini">Produktivitas</a>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div>
+                                        {% if item.grafik_dict.Berat %}
+                                        <a href="{{ item.grafik_dict.Berat }}" target="_blank" class="btn mini">Berat</a>
+                                        {% endif %}
+                                        {% if item.grafik_dict.Value %}
+                                        <a href="{{ item.grafik_dict.Value }}" target="_blank" class="btn mini">Value</a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
                             </td>
 
                             <td>
-                                {% if item.trend_path %}
-                                    {% if item.type == 'Produksi' %}
-                                        <div>
-                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Produksi_') }}" target="_blank" class="btn mini">Produksi</a>
-                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Luas_') }}" target="_blank" class="btn mini">Luas</a>
-                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Produktivitas_') }}" target="_blank" class="btn mini">Produktivitas</a>
-                                        </div>
-                                    {% else %}
-                                        <div>
-                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Berat_') }}" target="_blank" class="btn mini">Berat</a>
-                                            <a href="/{{ item.trend_path.replace('tren_', 'tren_Value_') }}" target="_blank" class="btn mini">Value</a>
-                                        </div>
-                                    {% endif %}
-                                {% else %}-{% endif %}
+                                {% if item.type == 'Produksi' %}
+                                    <div>
+                                        {% if item.tren_dict.Produksi %}
+                                        <a href="{{ item.tren_dict.Produksi }}" target="_blank" class="btn mini">Produksi</a>
+                                        {% endif %}
+                                        {% if item.tren_dict.Luas %}
+                                        <a href="{{ item.tren_dict.Luas }}" target="_blank" class="btn mini">Luas</a>
+                                        {% endif %}
+                                        {% if item.tren_dict.Produktivitas %}
+                                        <a href="{{ item.tren_dict.Produktivitas }}" target="_blank" class="btn mini">Produktivitas</a>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div>
+                                        {% if item.tren_dict.Berat %}
+                                        <a href="{{ item.tren_dict.Berat }}" target="_blank" class="btn mini">Berat</a>
+                                        {% endif %}
+                                        {% if item.tren_dict.Value %}
+                                        <a href="{{ item.tren_dict.Value }}" target="_blank" class="btn mini">Value</a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
                             </td>
 
                             <td>

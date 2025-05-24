@@ -128,7 +128,6 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
     cluster_table = [[f"Cluster {i}", ', '.join(df[df['Cluster'] == i][lokasi_col].tolist())] for i in range(n_clusters)]
     count_table = [[f"Cluster {i}", int((df['Cluster'] == i).sum())] for i in range(n_clusters)]
 
-    # === Simpan grafik batang dan tren
     for fitur in fitur_cols:
         grafik_paths[fitur] = plot_bar(df, lokasi_col, fitur, cluster_colors, file_id)
 
@@ -144,16 +143,13 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
             'Produktivitas': plot_trend(df, lokasi_col, produktivitas_cols, file_id, 'Produktivitas')
         }
 
-    # === Peta Interaktif
     peta = folium.Map(location=[-2, 117], zoom_start=3 if not is_ekspor else 2)
     for _, row in df.iterrows():
         popup = f"<b>{row[lokasi_col]}</b><br>Cluster: {row['Cluster']}<br>Kategori: {row['Kategori']}<br>"
         for fitur in fitur_cols:
             popup += f"{fitur.replace('_', ' ')}: {int(row[fitur]):,}<br>"
-        folium.CircleMarker(
-            location=[row['Latitude'], row['Longitude']],
-            radius=6, color=row['Color'], fill=True, fill_opacity=0.7, popup=popup
-        ).add_to(peta)
+        folium.CircleMarker(location=[row['Latitude'], row['Longitude']],
+                            radius=6, color=row['Color'], fill=True, fill_opacity=0.7, popup=popup).add_to(peta)
 
     legend = '<div style="position: fixed; bottom: 20px; left: 20px; z-index:9999; background-color:white; padding: 10px; border:2px solid grey;"><strong>Legenda Cluster:</strong><br>'
     for i in range(n_clusters):
@@ -265,9 +261,28 @@ def logout():
 def history():
     all_history = list(history_collection.find().sort("timestamp", -1))
     grouped = defaultdict(list)
+
     for h in all_history:
+        h['grafik_dict'] = {}
+        h['tren_dict'] = {}
+
+        for p in h.get('grafik_paths', []):
+            if 'Produksi' in p: h['grafik_dict']['Produksi'] = '/' + p
+            if 'Luas' in p: h['grafik_dict']['Luas'] = '/' + p
+            if 'Produktivitas' in p: h['grafik_dict']['Produktivitas'] = '/' + p
+            if 'Berat' in p: h['grafik_dict']['Berat'] = '/' + p
+            if 'Value' in p: h['grafik_dict']['Value'] = '/' + p
+
+        for p in h.get('trend_paths', []):
+            if 'Produksi' in p: h['tren_dict']['Produksi'] = '/' + p
+            if 'Luas' in p: h['tren_dict']['Luas'] = '/' + p
+            if 'Produktivitas' in p: h['tren_dict']['Produktivitas'] = '/' + p
+            if 'Berat' in p: h['tren_dict']['Berat'] = '/' + p
+            if 'Value' in p: h['tren_dict']['Value'] = '/' + p
+
         tgl = h["timestamp"].strftime('%d/%m/%Y')
         grouped[tgl].append(h)
+
     return render_template('history.html', grouped_history=grouped)
 
 @app.route('/about')
