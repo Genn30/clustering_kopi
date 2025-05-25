@@ -163,7 +163,9 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
         plt.figure(figsize=(15, 7))
         linked = linkage(X_scaled, method='ward')
         threshold = linked[-(n_clusters - 1), 2]
-        dendrogram(linked, color_threshold=threshold, orientation='top', show_leaf_counts=True)
+        labels = df[lokasi_col].tolist()
+        plt.figure(figsize=(15, 7))
+        dendrogram(linked, labels=labels, color_threshold=threshold, orientation='top', leaf_rotation=90)
         plt.tight_layout()
         dendro_path = f"static/img/dendrogram_{file_id}.png"
         plt.savefig(dendro_path)
