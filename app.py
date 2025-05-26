@@ -107,7 +107,7 @@ def proses_clustering(uploaded_file, method, n_clusters, is_ekspor=False):
     X_scaled = scaler.fit_transform(df[fitur_cols])
 
     start = time.time()
-    model = KMeans(n_clusters=n_clusters, random_state=42, n_init='auto') if method == "kmeans" else AgglomerativeClustering(n_clusters=n_clusters)
+    model = KMeans(n_clusters=n_clusters, random_state=60, init="k-means++") if method == "kmeans" else AgglomerativeClustering(n_clusters=n_clusters)
     labels = model.fit_predict(X_scaled)
     algo = "K-Means" if method == "kmeans" else "Agglomerative"
     exec_time = round(time.time() - start, 4)
